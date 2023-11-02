@@ -2,7 +2,7 @@
 
 namespace UMS.Domain.Entities
 {
-    public class PersonalData
+    public class PersonalData : Auditable
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
