@@ -2,7 +2,7 @@
 
 namespace UMS.Domain.Entities
 {
-    public class AcadPosition
+    public class AcadPosition : Auditable
     {
         public Position Name { get; set; }
     }
