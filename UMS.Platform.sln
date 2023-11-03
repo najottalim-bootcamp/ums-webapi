@@ -5,13 +5,13 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F5BF51A2-24FA-44EB-975F-F2C951908E37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UMS.DataAccess", "src\UMS.DataAccess\UMS.DataAccess.csproj", "{42B4C3CC-912F-404C-B476-FA20F7266C2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UMS.DataAccess", "src\UMS.DataAccess\UMS.DataAccess.csproj", "{42B4C3CC-912F-404C-B476-FA20F7266C2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UMS.Domain", "src\UMS.Domain\UMS.Domain.csproj", "{C7CAFF8F-D867-4729-902E-5A596EAA321F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UMS.Domain", "src\UMS.Domain\UMS.Domain.csproj", "{C7CAFF8F-D867-4729-902E-5A596EAA321F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UMS.API", "src\UMS.API\UMS.API.csproj", "{57DAFA4A-5ED0-4009-B365-6BD918784918}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UMS.API", "src\UMS.API\UMS.API.csproj", "{57DAFA4A-5ED0-4009-B365-6BD918784918}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UMS.Service", "src\UMS.Service\UMS.Service.csproj", "{4EE519B4-7186-40F4-9ECE-6C0AF233FAB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UMS.Service", "src\UMS.Service\UMS.Service.csproj", "{4EE519B4-7186-40F4-9ECE-6C0AF233FAB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

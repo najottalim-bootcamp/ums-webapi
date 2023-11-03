@@ -1,4 +1,4 @@
-﻿namespace UMS.Domain.Entities
+﻿namespace UMS.Domain.Entities.Teacher
 {
     public class ScienDegree : Auditable
     {
