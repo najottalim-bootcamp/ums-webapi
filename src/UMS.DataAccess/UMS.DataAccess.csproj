@@ -15,4 +15,12 @@
     <ProjectReference Include="..\UMS.Domain\UMS.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Dtos\University\" />
+    <None Remove="Dtos\Education\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dtos\University\" />
+    <Folder Include="Dtos\Education\" />
+  </ItemGroup>
 </Project>
