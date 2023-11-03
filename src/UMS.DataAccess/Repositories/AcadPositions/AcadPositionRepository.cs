@@ -60,7 +60,7 @@ public class AcadPositionRepository : BaseRepository, IAcadPositionRepository
         }
         finally
         {
-            await _connection.CloseAsync();
+            await _connection.CloseAsync(); 
         }
     }
 
