@@ -3,6 +3,6 @@
     public class Specialty : BaseEntity
     {
         public string Name { get; set; }
-        public int DepartmentId { get; set; }
+        public long DepartmentId { get; set; }
     }
 }
