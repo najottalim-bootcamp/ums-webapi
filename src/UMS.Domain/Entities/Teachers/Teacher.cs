@@ -2,9 +2,9 @@
 {
     public class Teacher : Auditable
     {
-        public int DepartmentId { get; set; }
-        public int PersonalDataId { get; set; }
-        public int AcadPositionId { get; set; }
-        public int ScienDegreeId { get; set; }
+        public long DepartmentId { get; set; }
+        public long PersonalDataId { get; set; }
+        public long AcadPositionId { get; set; }
+        public long ScienDegreeId { get; set; }
     }
 }
