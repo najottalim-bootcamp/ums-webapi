@@ -1,6 +1,6 @@
 ﻿using static UMS.Domain.Enums.PositionEnum;
 
-namespace UMS.Domain.Entities
+namespace UMS.Domain.Entities.Teacher
 {
     public class AcadPosition : Auditable
     {

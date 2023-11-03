@@ -1,4 +1,4 @@
-﻿namespace UMS.Domain.Entities
+﻿namespace UMS.Domain.Entities.Locations
 {
     public class Country : Auditable
     {
