@@ -2,8 +2,8 @@
 {
     public class Contract : Auditable
     {
-        public int FacultId { get; set; }
-        public int StudentId { get; set; }
+        public long FacultId { get; set; }
+        public long StudentId { get; set; }
         public float Price { get; set; }
     }
 }
