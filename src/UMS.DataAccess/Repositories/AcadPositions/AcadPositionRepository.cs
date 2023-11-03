@@ -1,4 +1,6 @@
-﻿namespace UMS.DataAccess.Repositories.AcadPosition;
+﻿using static Dapper.SqlMapper;
+
+namespace UMS.DataAccess.Repositories.AcadPositions;
 
 public class AcadPositionRepository : BaseRepository, IAcadPositionRepository
 {
@@ -42,19 +44,19 @@ public class AcadPositionRepository : BaseRepository, IAcadPositionRepository
         }
     }
 
-    public async ValueTask<IList<Domain.Entities.Teacher.AcadPosition>> GetAllAsync()
+    public async ValueTask<IList<AcadPosition>> GetAllAsync()
     {
         try
         {
             await _connection.OpenAsync();
 
             string query = "SELECT * FROM AcadPosition;";
-            var result = (await _connection.QueryAsync<Domain.Entities.Teacher.AcadPosition>(query)).ToList();
+            var result = (await _connection.QueryAsync<AcadPosition>(query)).ToList();
             return result;
         }
         catch
         {
-            return new List<Domain.Entities.Teacher.AcadPosition>();
+            return new List<AcadPosition>();
         }
         finally
         {
@@ -62,23 +64,87 @@ public class AcadPositionRepository : BaseRepository, IAcadPositionRepository
         }
     }
 
-    public ValueTask<Domain.Entities.Teacher.AcadPosition> GetByIdAsync(long Id)
+    public async ValueTask<AcadPosition?> GetByIdAsync(long Id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+
+            string query = $"SELECT * FROM AcadPosition WHERE Id = @Id";
+            var acadPosition = await _connection.QueryFirstOrDefaultAsync<AcadPosition>(query, new { Id = Id});
+
+            return acadPosition;
+        }
+        catch
+        {
+            return new AcadPosition();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
-    public ValueTask<long> GetCountAsync()
+    public async ValueTask<long> GetCountAsync()
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+
+            string query = "SELECT COUNT(*) FROM AcadPosition;";
+            long count = _connection.ExecuteScalar<long>(query);
+
+            return count;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
-    public ValueTask<IList<Domain.Entities.Teacher.AcadPosition>> GetPageItems(PaginationParams @params)
+    public async ValueTask<IList<AcadPosition>> GetPageItems(PaginationParams @params)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"SELECT * FROM AcadPosition ORDER BY Id DESC " +
+                $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
+
+            var acadPositions = (await _connection.QueryAsync<AcadPosition>(query)).ToList();
+            return acadPositions;
+        }
+        catch
+        {
+            return new List<AcadPosition>();
+        }
+        finally 
+        { 
+            await _connection.CloseAsync(); 
+        }
     }
 
-    public ValueTask<int> UpdateAsync(long Id, AcadPositionDto model)
+    public async ValueTask<int> UpdateAsync(long Id, AcadPositionDto model)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+
+            string query = $"UPDATE AcadPosition SET Name=@Name WHERE id={Id};";
+            var result = await _connection.ExecuteAsync(query, model);
+
+            return result;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 }
