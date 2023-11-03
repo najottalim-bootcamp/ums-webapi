@@ -2,8 +2,8 @@
 {
     public class SpecialtyEduForm : BaseEntity
     {
-        public int EduFormId { get; set; }
-        public int SpecialtyId { get; set; }
+        public long EduFormId { get; set; }
+        public long SpecialtyId { get; set; }
 
     }
 }
