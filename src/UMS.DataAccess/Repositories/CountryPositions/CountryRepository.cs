@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using UMS.DataAccess.Dtos.EduForm;
+using UMS.DataAccess.Dtos.Countries;
 using UMS.Domain.Entities.EduModels;
+using UMS.Domain.Entities.Locations;
 
-namespace UMS.DataAccess.Repositories.EduFormPositions
+namespace UMS.DataAccess.Repositories.CountryPositions
 {
-    public class EduFormPositionRepository : BaseRepository, IEduFormPositionRepository
+    public class CountryRepository : BaseRepository, ICountryRepository
     {
-        public async ValueTask<int> CreateAsync(EduFormDto model)
+        public async ValueTask<int> CreateAsync(CountryDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO EduForm VAlUES(@Name,@IsActive, @CreatedAt, @UpdatedAt);";
+                string query = "INSERT INTO Country VAlUES(@Name);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -37,7 +37,7 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
             {
                 await _connection.OpenAsync();
 
-                string query = "DELETE FROM EduForm WHERE Id = @Id;";
+                string query = "DELETE FROM Country WHERE Id = @Id;";
                 int result = await _connection.ExecuteAsync(query, new { Id = Id });
                 return result;
             }
@@ -51,19 +51,19 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
             }
         }
 
-        public async ValueTask<IList<EduForm>> GetAllAsync()
+        public async ValueTask<IList<Country>> GetAllAsync()
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM EduForm;";
-                var result = (await _connection.QueryAsync<EduForm>(query)).ToList();
+                string query = "SELECT * FROM Country;";
+                var result = (await _connection.QueryAsync<Country>(query)).ToList();
                 return result;
             }
             catch
             {
-                return new List<EduForm>();
+                return new List<Country>();
             }
             finally
             {
@@ -71,19 +71,19 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
             }
         }
 
-        public async ValueTask<EduForm> GetByIdAsync(long Id)
+        public async ValueTask<Country> GetByIdAsync(long Id)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM EduForm where Id = @Id;";
-                var result = (await _connection.QueryFirstOrDefaultAsync<EduForm>(query,new {Id = Id}));
+                string query = "SELECT * FROM Country where Id = @Id;";
+                var result = (await _connection.QueryFirstOrDefaultAsync<Country>(query, new { Id = Id }));
                 return result;
             }
             catch
             {
-                return new EduForm();
+                return new Country();
             }
             finally
             {
@@ -91,13 +91,13 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
             }
         }
 
-        public async  ValueTask<long> GetCountAsync()
+        public async ValueTask<long> GetCountAsync()
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT COUNT(*) FROM EduForm;";
+                string query = "SELECT COUNT(*) FROM Country;";
                 var result = (_connection.ExecuteScalar<long>(query));
                 return result;
             }
@@ -111,19 +111,19 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
             }
         }
 
-        public async ValueTask<IList<EduForm>> GetPageItems(PaginationParams @params)
+        public async ValueTask<IList<Country>> GetPageItems(PaginationParams @params)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT TOP 20 * FROM EduForm;";
-                var result = (await _connection.QueryAsync<EduForm>(query)).ToList();
+                string query = "SELECT TOP 20 * FROM Country;";
+                var result = (await _connection.QueryAsync<Country>(query)).ToList();
                 return result;
             }
             catch
             {
-                return new List<EduForm>();
+                return new List<Country>();
             }
             finally
             {
@@ -131,13 +131,13 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, EduFormDto model)
+        public async ValueTask<int> UpdateAsync(long Id, CountryDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "UPDATE EduForm SET Name = @Name,IsActive = @IsActive, CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt;";
+                string query = "UPDATE Country SET Name = @Name CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt;";
                 var result = (await _connection.ExecuteAsync(query));
                 return result;
             }
