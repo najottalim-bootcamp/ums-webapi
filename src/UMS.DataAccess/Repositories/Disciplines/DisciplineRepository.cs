@@ -1,19 +1,18 @@
-﻿using UMS.DataAccess.Dtos.EduForm;
+﻿using UMS.DataAccess.Dtos.Discipline;
 using UMS.Domain.Entities.EduModels;
 
-namespace UMS.DataAccess.Repositories.EduFormPositions
+namespace UMS.DataAccess.Repositories.Disciplines
 {
-    public class EduFormRepository : BaseRepository, IEduFormRepository
+    public class DisciplineRepository : BaseRepository, IDisciplineRepository
     {
-        
-
-        public async ValueTask<int> CreateAsync(EduFormDto model)
+        public async ValueTask<int> CreateAsync(DisciplineDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO EduForm VAlUES(@Name,@IsActive, @CreatedAt);";
+                string query = "INSERT INTO Discipline(Name,DepartmentId,TeacherId,LectureHours,PracticeHours,CreatedAt)" +
+                    " VAlUES(@Name,@DepartmentId,@TeacherId,@LectureHours,@PracticeHours,@CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -33,7 +32,7 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
             {
                 await _connection.OpenAsync();
 
-                string query = "DELETE FROM EduForm WHERE Id = @Id;";
+                string query = "DELETE FROM Discipline WHERE Id = @Id;";
                 int result = await _connection.ExecuteAsync(query, new { Id = Id });
                 return result;
             }
@@ -47,19 +46,19 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
             }
         }
 
-        public async ValueTask<IList<EduForm>> GetAllAsync()
+        public async ValueTask<IList<Discipline>> GetAllAsync()
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM EduForm;";
-                var result = (await _connection.QueryAsync<EduForm>(query)).ToList();
+                string query = "SELECT * FROM Discipline;";
+                var result = (await _connection.QueryAsync<Discipline>(query)).ToList();
                 return result;
             }
             catch
             {
-                return new List<EduForm>();
+                return new List<Discipline>();
             }
             finally
             {
@@ -67,19 +66,20 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
             }
         }
 
-        public async ValueTask<EduForm> GetByIdAsync(long Id)
+        public async ValueTask<Discipline> GetByIdAsync(long Id)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM EduForm where Id = @Id;";
-                var result = (await _connection.QueryFirstOrDefaultAsync<EduForm>(query,new {Id = Id}));
-                return result;
+                string query = $"SELECT * FROM Discipline WHERE Id = @Id";
+                var discipline = await _connection.QueryFirstOrDefaultAsync<Discipline>(query, new { Id = Id });
+
+                return discipline;
             }
             catch
             {
-                return new EduForm();
+                return new Discipline();
             }
             finally
             {
@@ -87,15 +87,16 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
             }
         }
 
-        public async  ValueTask<long> GetCountAsync()
+        public async ValueTask<long> GetCountAsync()
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT COUNT(*) FROM EduForm;";
-                var result = (_connection.ExecuteScalar<long>(query));
-                return result;
+                string query = "SELECT COUNT(*) FROM Discipline;";
+                long count = _connection.ExecuteScalar<long>(query);
+
+                return count;
             }
             catch
             {
@@ -107,20 +108,20 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
             }
         }
 
-        public async ValueTask<IList<EduForm>> GetPageItems(PaginationParams @params)
+        public async ValueTask<IList<Discipline>> GetPageItems(PaginationParams @params)
         {
             try
             {
                 await _connection.OpenAsync();
+                string query = $"SELECT * FROM Discipline ORDER BY Id DESC " +
+                    $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
 
-                string query = $"SELECT * FROM EduForm ORDER BY Id DESC " +
-                                  $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
-                var result = (await _connection.QueryAsync<EduForm>(query)).ToList();
-                return result;
+                var discipline = (await _connection.QueryAsync<Discipline>(query)).ToList();
+                return discipline;
             }
             catch
             {
-                return new List<EduForm>();
+                return new List<Discipline>();
             }
             finally
             {
@@ -128,16 +129,16 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
             }
         }
 
-        
-
-        public async ValueTask<int> UpdateAsync(long Id, EduFormDto model)
+        public async ValueTask<int> UpdateAsync(long Id, DisciplineDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "UPDATE EduForm SET Name = @Name,IsActive = @IsActive, UpdatedAt = @UpdatedAt;";
-                var result = (await _connection.ExecuteAsync(query));
+                string query = $"UPDATE Discipline SET Name = @Name,DepartmentId = @DepartmentId,TeacherId = @TeacherId,LectureHours = @LectureHours," +
+                    $"PracticeHours = @PracticeHours, UpdatedAt  = @UpdatedAt WHERE id={Id};";
+                var result = await _connection.ExecuteAsync(query, model);
+
                 return result;
             }
             catch
@@ -151,3 +152,4 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
         }
     }
 }
+
