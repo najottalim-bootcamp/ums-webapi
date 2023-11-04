@@ -8,6 +8,7 @@ global using UMS.DataAccess.Dtos.EduForm;
 global using UMS.Domain.Entities.EduModels;
 global using UMS.DataAccess.Dtos.Countries;
 global using UMS.Domain.Entities.Locations;
+global using UMS.DataAccess.Dtos.Education;
 global using UMS.DataAccess.Dtos.Cities;
 global using UMS.DataAccess.Dtos.Contracts;
 global using UMS.Domain.Entities.Payments;
