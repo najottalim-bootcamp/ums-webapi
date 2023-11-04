@@ -130,7 +130,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "UPDATE Department SET Name = @Name,FacultyId=@FacultyId";
+                string query = $"UPDATE Department SET Name = @Name,FacultyId=@FacultyId WHERE id={Id};";
                 var result = (await _connection.ExecuteAsync(query));
                 return result;
             }
