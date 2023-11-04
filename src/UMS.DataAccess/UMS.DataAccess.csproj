@@ -19,6 +19,7 @@
     <None Remove="Dtos\University\" />
     <None Remove="Dtos\Education\" />
     <None Remove="Repositories\Universities\" />
+    <None Remove="Repositories\Branchs\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dtos\University\" />
@@ -26,5 +27,6 @@
 
     <Folder Include="Repositories\Universities\" />
 
+    <Folder Include="Repositories\Branchs\" />
   </ItemGroup>
 </Project>
