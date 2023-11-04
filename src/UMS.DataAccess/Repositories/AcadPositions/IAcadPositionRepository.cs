@@ -1,6 +1,5 @@
-﻿using Entity = UMS.Domain.Entities.Teacher;
-namespace UMS.DataAccess.Repositories.AcadPositions;
+﻿namespace UMS.DataAccess.Repositories.AcadPositions;
 
-public interface IAcadPositionRepository : IBaseRepository<Entity.AcadPosition, AcadPositionDto>
+public interface IAcadPositionRepository : IBaseRepository<AcadPosition, AcadPositionDto>
 {
 }

@@ -4,3 +4,7 @@ global using UMS.DataAccess.Common.Paginations;
 global using UMS.DataAccess.Dtos.Teachers;
 global using UMS.DataAccess.Repositories.AcadPositions;
 global using System.Data.SqlClient;
+global using UMS.DataAccess.Dtos.EduForm;
+global using UMS.Domain.Entities.EduModels;
+global using UMS.DataAccess.Dtos.Countries;
+global using UMS.Domain.Entities.Locations;
