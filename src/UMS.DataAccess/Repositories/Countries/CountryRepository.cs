@@ -1,4 +1,4 @@
-﻿namespace UMS.DataAccess.Repositories.CountryPositions
+﻿namespace UMS.DataAccess.Repositories.Countries
 {
     public class CountryRepository : BaseRepository, ICountryRepository
     {
