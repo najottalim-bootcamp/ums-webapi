@@ -15,3 +15,7 @@ global using UMS.Domain.Entities.Payments;
 global using UMS.DataAccess.Dtos.Students;
 global using UMS.Domain.Entities.Students;
 global using UMS.DataAccess.Dtos.Subjects;
+global using UMS.DataAccess.Dtos.University;
+global using UMS.Domain.Entities.University;
+global using UMS.DataAccess.Dtos.Education;
+
