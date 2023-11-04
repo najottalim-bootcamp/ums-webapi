@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-using UMS.DataAccess.Dtos.EduForm;
-using UMS.Domain.Entities.EduModels;
-
-namespace UMS.DataAccess.Repositories.EduFormPositions
+﻿namespace UMS.DataAccess.Repositories.EduFormPositions
 {
-    public class EduFormPositionRepository : BaseRepository, IEduFormPositionRepository
+    public class EduFormRepository : BaseRepository, IEduFormRepository
     {
         public async ValueTask<int> CreateAsync(EduFormDto model)
         {
@@ -117,7 +108,8 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT TOP 20 * FROM EduForm;";
+                string query = $"SELECT * FROM EduForm ORDER BY Id DESC " +
+                                  $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
                 var result = (await _connection.QueryAsync<EduForm>(query)).ToList();
                 return result;
             }
