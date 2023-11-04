@@ -1,16 +1,16 @@
-﻿namespace UMS.DataAccess.Repositories.Countries
+﻿namespace UMS.DataAccess.Repositories.Cities
 {
-    public class CountryRepository : BaseRepository, ICountryRepository
+    public class CityRepository : BaseRepository, ICityRepository
     {
-        public async ValueTask<int> CreateAsync(CountryDto model)
+        //Check it
+        public async ValueTask<int> CreateAsync(CityDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Country VALUES(@Name);";
+                string query = "INSERT INTO City(Name,CreatedAt) VAlUES(@Name,@CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
-
                 return result;
             }
             catch
@@ -29,7 +29,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "DELETE FROM Country WHERE Id = @Id;";
+                string query = "DELETE FROM City WHERE Id = @Id;";
                 int result = await _connection.ExecuteAsync(query, new { Id = Id });
                 return result;
             }
@@ -43,19 +43,19 @@
             }
         }
 
-        public async ValueTask<IList<Country>> GetAllAsync()
+        public async ValueTask<IList<City>> GetAllAsync()
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM Country;";
-                var result = (await _connection.QueryAsync<Country>(query)).ToList();
+                string query = "SELECT * FROM City;";
+                var result = (await _connection.QueryAsync<City>(query)).ToList();
                 return result;
             }
             catch
             {
-                return new List<Country>();
+                return new List<City>();
             }
             finally
             {
@@ -63,19 +63,20 @@
             }
         }
 
-        public async ValueTask<Country> GetByIdAsync(long Id)
+        public async ValueTask<City> GetByIdAsync(long Id)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM Country where Id = @Id;";
-                var result = (await _connection.QueryFirstOrDefaultAsync<Country>(query, new { Id = Id }));
-                return result;
+                string query = $"SELECT * FROM City WHERE Id = @Id";
+                var city = await _connection.QueryFirstOrDefaultAsync<City>(query, new { Id = Id });
+
+                return city;
             }
             catch
             {
-                return new Country();
+                return new City();
             }
             finally
             {
@@ -89,9 +90,10 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT COUNT(*) FROM Country;";
-                var result = (_connection.ExecuteScalar<long>(query));
-                return result;
+                string query = "SELECT COUNT(*) FROM City;";
+                long count = _connection.ExecuteScalar<long>(query);
+
+                return count;
             }
             catch
             {
@@ -103,35 +105,36 @@
             }
         }
 
-        public async ValueTask<IList<Country>> GetPageItems(PaginationParams @params)
+        public async ValueTask<IList<City>> GetPageItems(PaginationParams @params)
         {
             try
             {
                 await _connection.OpenAsync();
+                string query = $"SELECT * FROM City ORDER BY Id DESC " +
+                    $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
 
-                string query = $"SELECT * FROM Country ORDER BY Id DESC " +
-                                 $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
-                var result = (await _connection.QueryAsync<Country>(query)).ToList();
-                return result;
+                var cities = (await _connection.QueryAsync<City>(query)).ToList();
+                return cities;
             }
             catch
             {
-                return new List<Country>();
+                return new List<City>();
             }
             finally
             {
                 await _connection.CloseAsync();
             }
         }
-
-        public async ValueTask<int> UpdateAsync(long Id, CountryDto model)
+        //Check it
+        public async ValueTask<int> UpdateAsync(long Id, CityDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "UPDATE Country SET Name = @Name CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt;";
-                var result = (await _connection.ExecuteAsync(query));
+                string query = $"UPDATE City SET Name=@Name,UpdatedAt = @UpdatedAt WHERE id={Id};";
+                var result = await _connection.ExecuteAsync(query, model);
+
                 return result;
             }
             catch
