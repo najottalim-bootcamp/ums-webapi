@@ -22,5 +22,6 @@
   <ItemGroup>
     <Folder Include="Dtos\University\" />
     <Folder Include="Dtos\Education\" />
+    <Folder Include="Dtos\Новая папка\" />
   </ItemGroup>
 </Project>
