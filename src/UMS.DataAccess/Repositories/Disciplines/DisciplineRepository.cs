@@ -12,7 +12,7 @@ namespace UMS.DataAccess.Repositories.Disciplines
                 await _connection.OpenAsync();
 
                 string query = "INSERT INTO Discipline(Name,DepartmentId,TeacherId,LectureHours,PracticeHours,CreatedAt)" +
-                    " VAlUES(@Name,@DepartamentId,@TeacherId,@LectureHours,@PracticeHours,@CreatedAt);";
+                    " VAlUES(@Name,@DepartmentId,@TeacherId,@LectureHours,@PracticeHours,@CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -52,7 +52,7 @@ namespace UMS.DataAccess.Repositories.Disciplines
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM AcadPosition;";
+                string query = "SELECT * FROM Discipline;";
                 var result = (await _connection.QueryAsync<Discipline>(query)).ToList();
                 return result;
             }
@@ -72,7 +72,7 @@ namespace UMS.DataAccess.Repositories.Disciplines
             {
                 await _connection.OpenAsync();
 
-                string query = $"SELECT * FROM AcadPosition WHERE Id = @Id";
+                string query = $"SELECT * FROM Discipline WHERE Id = @Id";
                 var discipline = await _connection.QueryFirstOrDefaultAsync<Discipline>(query, new { Id = Id });
 
                 return discipline;
@@ -113,7 +113,7 @@ namespace UMS.DataAccess.Repositories.Disciplines
             try
             {
                 await _connection.OpenAsync();
-                string query = $"SELECT * FROM AcadPosition ORDER BY Id DESC " +
+                string query = $"SELECT * FROM Discipline ORDER BY Id DESC " +
                     $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
 
                 var discipline = (await _connection.QueryAsync<Discipline>(query)).ToList();
@@ -135,7 +135,8 @@ namespace UMS.DataAccess.Repositories.Disciplines
             {
                 await _connection.OpenAsync();
 
-                string query = $"UPDATE AcadPosition SET Name=@Name, UpdatedAt  = @UpdatedAt WHERE id={Id};";
+                string query = $"UPDATE Discipline SET Name = @Name,DepartmentId = @DepartmentId,TeacherId = @TeacherId,LectureHours = @LectureHours," +
+                    $"PracticeHours = @PracticeHours, UpdatedAt  = @UpdatedAt WHERE id={Id};";
                 var result = await _connection.ExecuteAsync(query, model);
 
                 return result;
