@@ -1,16 +1,15 @@
-﻿namespace UMS.DataAccess.Repositories.Countries
+﻿namespace UMS.DataAccess.Repositories.Departments
 {
-    public class CountryRepository : BaseRepository, ICountryRepository
+    public class DepartmentRepository : BaseRepository, IDepartmentRepository
     {
-        public async ValueTask<int> CreateAsync(CountryDto model)
+        public async ValueTask<int> CreateAsync(DepartmentDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Country VALUES(@Name);";
+                string query = "INSERT INTO Department VALUES(@Name,@FacultyId)";
                 int result = await _connection.ExecuteAsync(query, model);
-
                 return result;
             }
             catch
@@ -29,7 +28,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "DELETE FROM Country WHERE Id = @Id;";
+                string query = "DELETE FROM Department WHERE Id=@Id";
                 int result = await _connection.ExecuteAsync(query, new { Id = Id });
                 return result;
             }
@@ -43,19 +42,20 @@
             }
         }
 
-        public async ValueTask<IList<Country>> GetAllAsync()
+        public async ValueTask<IList<Department>> GetAllAsync()
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM Country;";
-                var result = (await _connection.QueryAsync<Country>(query)).ToList();
+                string query = "SELECT * FROM Department";
+                var result = (await _connection.QueryAsync<Department>(query)).ToList();
+
                 return result;
             }
             catch
             {
-                return new List<Country>();
+                return new List<Department>();
             }
             finally
             {
@@ -63,19 +63,19 @@
             }
         }
 
-        public async ValueTask<Country> GetByIdAsync(long Id)
+        public async ValueTask<Department> GetByIdAsync(long Id)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM Country where Id = @Id;";
-                var result = (await _connection.QueryFirstOrDefaultAsync<Country>(query, new { Id = Id }));
+                string query = "SELECT * FROM Department where Id = @Id;";
+                var result = (await _connection.QueryFirstOrDefaultAsync<Department>(query, new { Id = Id }));
                 return result;
             }
             catch
             {
-                return new Country();
+                return new Department();
             }
             finally
             {
@@ -89,7 +89,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT COUNT(*) FROM Country;";
+                string query = "SELECT COUNT(*) FROM Department;";
                 var result = (_connection.ExecuteScalar<long>(query));
                 return result;
             }
@@ -103,20 +103,20 @@
             }
         }
 
-        public async ValueTask<IList<Country>> GetPageItems(PaginationParams @params)
+        public async ValueTask<IList<Department>> GetPageItems(PaginationParams @params)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = $"SELECT * FROM Country ORDER BY Id DESC " +
-                                 $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
-                var result = (await _connection.QueryAsync<Country>(query)).ToList();
+                string query = $"SELECT * FROM Department ORDER BY Id DESC " +
+                                  $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
+                var result = (await _connection.QueryAsync<Department>(query)).ToList();
                 return result;
             }
             catch
             {
-                return new List<Country>();
+                return new List<Department>();
             }
             finally
             {
@@ -124,13 +124,13 @@
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, CountryDto model)
+        public async ValueTask<int> UpdateAsync(long Id, DepartmentDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "UPDATE Country SET Name = @Name CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt;";
+                string query = "UPDATE Department SET Name = @Name,FacultyId=@FacultyId";
                 var result = (await _connection.ExecuteAsync(query));
                 return result;
             }
@@ -145,3 +145,4 @@
         }
     }
 }
+

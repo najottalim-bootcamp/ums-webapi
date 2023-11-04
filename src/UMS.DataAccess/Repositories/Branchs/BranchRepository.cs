@@ -1,16 +1,15 @@
-﻿namespace UMS.DataAccess.Repositories.Countries
+﻿namespace UMS.DataAccess.Repositories.Branchs
 {
-    public class CountryRepository : BaseRepository, ICountryRepository
+    public class BranchRepository : BaseRepository, IBranchRepository
     {
-        public async ValueTask<int> CreateAsync(CountryDto model)
+        public async ValueTask<int> CreateAsync(BranchDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Country VALUES(@Name);";
+                string query = "INSERT INTO Branch VALUES(@Name, @Address, @PostCode , @UniversityId , @CityID)";
                 int result = await _connection.ExecuteAsync(query, model);
-
                 return result;
             }
             catch
@@ -29,7 +28,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "DELETE FROM Country WHERE Id = @Id;";
+                string query = "DELETE FROM Branch WHERE Id=@Id";
                 int result = await _connection.ExecuteAsync(query, new { Id = Id });
                 return result;
             }
@@ -43,19 +42,20 @@
             }
         }
 
-        public async ValueTask<IList<Country>> GetAllAsync()
+        public async ValueTask<IList<Branch>> GetAllAsync()
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM Country;";
-                var result = (await _connection.QueryAsync<Country>(query)).ToList();
+                string query = "SELECT * FROM Branch";
+                var result = (await _connection.QueryAsync<Branch>(query)).ToList();
+
                 return result;
             }
             catch
             {
-                return new List<Country>();
+                return new List<Branch>();
             }
             finally
             {
@@ -63,19 +63,19 @@
             }
         }
 
-        public async ValueTask<Country> GetByIdAsync(long Id)
+        public async ValueTask<Branch> GetByIdAsync(long Id)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM Country where Id = @Id;";
-                var result = (await _connection.QueryFirstOrDefaultAsync<Country>(query, new { Id = Id }));
+                string query = "SELECT * FROM Branch where Id = @Id;";
+                var result = (await _connection.QueryFirstOrDefaultAsync<Branch>(query, new { Id = Id }));
                 return result;
             }
             catch
             {
-                return new Country();
+                return new Branch();
             }
             finally
             {
@@ -89,7 +89,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT COUNT(*) FROM Country;";
+                string query = "SELECT COUNT(*) FROM Branch;";
                 var result = (_connection.ExecuteScalar<long>(query));
                 return result;
             }
@@ -103,20 +103,20 @@
             }
         }
 
-        public async ValueTask<IList<Country>> GetPageItems(PaginationParams @params)
+        public async ValueTask<IList<Branch>> GetPageItems(PaginationParams @params)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = $"SELECT * FROM Country ORDER BY Id DESC " +
-                                 $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
-                var result = (await _connection.QueryAsync<Country>(query)).ToList();
+                string query = $"SELECT * FROM Branch ORDER BY Id DESC " +
+                                  $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
+                var result = (await _connection.QueryAsync<Branch>(query)).ToList();
                 return result;
             }
             catch
             {
-                return new List<Country>();
+                return new List<Branch>();
             }
             finally
             {
@@ -124,13 +124,13 @@
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, CountryDto model)
+        public async ValueTask<int> UpdateAsync(long Id, BranchDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "UPDATE Country SET Name = @Name CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt;";
+                string query = "UPDATE Branch SET Name = @Name,Address=@Address,PostCode=@PostCode,UniversityId=@UniversityId, CityId=@CityId;";
                 var result = (await _connection.ExecuteAsync(query));
                 return result;
             }
@@ -145,3 +145,4 @@
         }
     }
 }
+
