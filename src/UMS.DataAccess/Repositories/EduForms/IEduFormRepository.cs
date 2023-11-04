@@ -1,6 +1,7 @@
-﻿namespace UMS.DataAccess.Repositories.EduFormPositions
+﻿
+namespace UMS.DataAccess.Repositories.EduFormPositions
 {
-    public interface IEduFormRepository:IBaseRepository<EduForm,EduFormDto>
+    public interface IEduFormRepository : IBaseRepository<EduForm, EduFormDto>
     {
     }
 }
