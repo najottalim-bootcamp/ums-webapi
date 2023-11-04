@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UMS.DataAccess.Dtos.Countries;
-using UMS.Domain.Entities.EduModels;
-using UMS.Domain.Entities.Locations;
-
-namespace UMS.DataAccess.Repositories.CountryPositions
+﻿namespace UMS.DataAccess.Repositories.Countries
 {
     public class CountryRepository : BaseRepository, ICountryRepository
     {
@@ -19,6 +10,7 @@ namespace UMS.DataAccess.Repositories.CountryPositions
 
                 string query = "INSERT INTO Country VAlUES(@Name);";
                 int result = await _connection.ExecuteAsync(query, model);
+
                 return result;
             }
             catch
@@ -117,7 +109,8 @@ namespace UMS.DataAccess.Repositories.CountryPositions
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT TOP 20 * FROM Country;";
+                string query = $"SELECT * FROM Country ORDER BY Id DESC " +
+                                 $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
                 var result = (await _connection.QueryAsync<Country>(query)).ToList();
                 return result;
             }
