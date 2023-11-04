@@ -1,16 +1,18 @@
-﻿namespace UMS.DataAccess.Repositories.Countries
+﻿namespace UMS.DataAccess.Repositories.Subjects
 {
-    public class CountryRepository : BaseRepository, ICountryRepository
+    public class SubjectRepository : BaseRepository, ISubjectRepository
     {
-        public async ValueTask<int> CreateAsync(CountryDto model)
+        //Check it
+        public async ValueTask<int> CreateAsync(SubjectDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Country VALUES(@Name);";
-                int result = await _connection.ExecuteAsync(query, model);
+                string query = @"INSERT INTO Subjects(Name,SpecialityId,CreatedAt)
+                                            VAlUES(@Name,@SpecialityId,@CreatedAt);";
 
+                int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
             catch
@@ -29,7 +31,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "DELETE FROM Country WHERE Id = @Id;";
+                string query = "DELETE FROM Subjects WHERE Id = @Id;";
                 int result = await _connection.ExecuteAsync(query, new { Id = Id });
                 return result;
             }
@@ -43,19 +45,19 @@
             }
         }
 
-        public async ValueTask<IList<Country>> GetAllAsync()
+        public async ValueTask<IList<Subject>> GetAllAsync()
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM Country;";
-                var result = (await _connection.QueryAsync<Country>(query)).ToList();
-                return result;
+                string query = "SELECT * FROM Subjects;";
+                var subjects = (await _connection.QueryAsync<Subject>(query)).ToList();
+                return subjects;
             }
             catch
             {
-                return new List<Country>();
+                return new List<Subject>();
             }
             finally
             {
@@ -63,19 +65,20 @@
             }
         }
 
-        public async ValueTask<Country> GetByIdAsync(long Id)
+        public async ValueTask<Subject> GetByIdAsync(long Id)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM Country where Id = @Id;";
-                var result = (await _connection.QueryFirstOrDefaultAsync<Country>(query, new { Id = Id }));
-                return result;
+                string query = $"SELECT * FROM Subjects WHERE Id = @Id";
+                var subjects = await _connection.QueryFirstOrDefaultAsync<Subject>(query, new { Id = Id });
+
+                return subjects;
             }
             catch
             {
-                return new Country();
+                return new Subject();
             }
             finally
             {
@@ -89,9 +92,10 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT COUNT(*) FROM Country;";
-                var result = (_connection.ExecuteScalar<long>(query));
-                return result;
+                string query = "SELECT COUNT(*) FROM Subjects;";
+                long count = _connection.ExecuteScalar<long>(query);
+
+                return count;
             }
             catch
             {
@@ -103,35 +107,37 @@
             }
         }
 
-        public async ValueTask<IList<Country>> GetPageItems(PaginationParams @params)
+        public async ValueTask<IList<Subject>> GetPageItems(PaginationParams @params)
         {
             try
             {
                 await _connection.OpenAsync();
+                string query = $"SELECT * FROM Subjects ORDER BY Id DESC " +
+                    $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
 
-                string query = $"SELECT * FROM Country ORDER BY Id DESC " +
-                                 $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
-                var result = (await _connection.QueryAsync<Country>(query)).ToList();
-                return result;
+                var subjects = (await _connection.QueryAsync<Subject>(query)).ToList();
+                return subjects;
             }
             catch
             {
-                return new List<Country>();
+                return new List<Subject>();
             }
             finally
             {
                 await _connection.CloseAsync();
             }
         }
-
-        public async ValueTask<int> UpdateAsync(long Id, CountryDto model)
+        //Check it
+        public async ValueTask<int> UpdateAsync(long Id, SubjectDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "UPDATE Country SET Name = @Name CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt;";
-                var result = (await _connection.ExecuteAsync(query));
+                string query = @$"UPDATE Subjects SET Name=@Name,SpecialityId=@SpecialityId,UpdatedAt=@UpdatedAt 
+                                    WHERE id={Id};";
+                var result = await _connection.ExecuteAsync(query, model);
+
                 return result;
             }
             catch

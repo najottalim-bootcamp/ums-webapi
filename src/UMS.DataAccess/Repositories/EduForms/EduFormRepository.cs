@@ -1,14 +1,19 @@
-﻿namespace UMS.DataAccess.Repositories.EduFormPositions
+﻿using UMS.DataAccess.Dtos.EduForm;
+using UMS.Domain.Entities.EduModels;
+
+namespace UMS.DataAccess.Repositories.EduFormPositions
 {
     public class EduFormRepository : BaseRepository, IEduFormRepository
     {
+        
+
         public async ValueTask<int> CreateAsync(EduFormDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO EduForm VAlUES(@Name,@IsActive, @CreatedAt, @UpdatedAt);";
+                string query = "INSERT INTO EduForm VAlUES(@Name,@IsActive, @CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -123,13 +128,15 @@
             }
         }
 
+        
+
         public async ValueTask<int> UpdateAsync(long Id, EduFormDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "UPDATE EduForm SET Name = @Name,IsActive = @IsActive, CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt;";
+                string query = "UPDATE EduForm SET Name = @Name,IsActive = @IsActive, UpdatedAt = @UpdatedAt;";
                 var result = (await _connection.ExecuteAsync(query));
                 return result;
             }

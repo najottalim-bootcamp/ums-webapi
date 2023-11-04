@@ -1,16 +1,15 @@
-﻿namespace UMS.DataAccess.Repositories.Countries
+﻿namespace UMS.DataAccess.Repositories.ScienDegrees
 {
-    public class CountryRepository : BaseRepository, ICountryRepository
+    public class ScienDegreeRepository : BaseRepository, IScienDegreeRepository
     {
-        public async ValueTask<int> CreateAsync(CountryDto model)
+        public async ValueTask<int> CreateAsync(ScienDegreeDTO model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Country VALUES(@Name);";
+                string query = "INSERT INTO ScienDegree VALUES(@Name, @CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
-
                 return result;
             }
             catch
@@ -29,7 +28,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "DELETE FROM Country WHERE Id = @Id;";
+                string query = "DELETE FROM ScienDegree WHERE Id = @Id;";
                 int result = await _connection.ExecuteAsync(query, new { Id = Id });
                 return result;
             }
@@ -43,19 +42,19 @@
             }
         }
 
-        public async ValueTask<IList<Country>> GetAllAsync()
+        public async ValueTask<IList<ScienDegree>> GetAllAsync()
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM Country;";
-                var result = (await _connection.QueryAsync<Country>(query)).ToList();
+                string query = "SELECT * FROM ScienDegree;";
+                var result = (await _connection.QueryAsync<ScienDegree>(query)).ToList();
                 return result;
             }
             catch
             {
-                return new List<Country>();
+                return new List<ScienDegree>();
             }
             finally
             {
@@ -63,19 +62,20 @@
             }
         }
 
-        public async ValueTask<Country> GetByIdAsync(long Id)
+        public async ValueTask<ScienDegree> GetByIdAsync(long Id)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM Country where Id = @Id;";
-                var result = (await _connection.QueryFirstOrDefaultAsync<Country>(query, new { Id = Id }));
-                return result;
+                string query = $"SELECT * FROM ScienDegree WHERE Id = @Id";
+                var scienDegree = await _connection.QueryFirstOrDefaultAsync<ScienDegree>(query, new { Id = Id });
+
+                return scienDegree;
             }
             catch
             {
-                return new Country();
+                return new ScienDegree();
             }
             finally
             {
@@ -89,9 +89,10 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT COUNT(*) FROM Country;";
-                var result = (_connection.ExecuteScalar<long>(query));
-                return result;
+                string query = "SELECT COUNT(*) FROM ScienDegree;";
+                long count = _connection.ExecuteScalar<long>(query);
+
+                return count;
             }
             catch
             {
@@ -103,20 +104,20 @@
             }
         }
 
-        public async ValueTask<IList<Country>> GetPageItems(PaginationParams @params)
+        public async ValueTask<IList<ScienDegree>> GetPageItems(PaginationParams @params)
         {
             try
             {
                 await _connection.OpenAsync();
+                string query = $"SELECT * FROM ScienDegree ORDER BY Id DESC " +
+                    $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
 
-                string query = $"SELECT * FROM Country ORDER BY Id DESC " +
-                                 $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
-                var result = (await _connection.QueryAsync<Country>(query)).ToList();
-                return result;
+                var scienDegrees = (await _connection.QueryAsync<ScienDegree>(query)).ToList();
+                return scienDegrees;
             }
             catch
             {
-                return new List<Country>();
+                return new List<ScienDegree>();
             }
             finally
             {
@@ -124,14 +125,15 @@
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, CountryDto model)
+        public async ValueTask<int> UpdateAsync(long Id, ScienDegreeDTO model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "UPDATE Country SET Name = @Name CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt;";
-                var result = (await _connection.ExecuteAsync(query));
+                string query = $"UPDATE ScienDegree SET Name = @Name, UpdatedAt = @UpdatedAt WHERE id = {Id};";
+                var result = await _connection.ExecuteAsync(query, model);
+
                 return result;
             }
             catch
