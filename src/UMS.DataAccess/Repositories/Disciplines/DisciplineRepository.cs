@@ -11,7 +11,7 @@ namespace UMS.DataAccess.Repositories.Disciplines
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Discipline(Name,DepartmentId,TeacherId,LectureHours,PracticeHours,CreatedAt)" +
+                string query = "INSERT INTO Discipline(Name,DepartmentId,TeacherId,LectureHours,PracticeHours,Created_At)" +
                     " VAlUES(@Name,@DepartmentId,@TeacherId,@LectureHours,@PracticeHours,@CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
@@ -136,7 +136,7 @@ namespace UMS.DataAccess.Repositories.Disciplines
                 await _connection.OpenAsync();
 
                 string query = $"UPDATE Discipline SET Name = @Name,DepartmentId = @DepartmentId,TeacherId = @TeacherId,LectureHours = @LectureHours," +
-                    $"PracticeHours = @PracticeHours, UpdatedAt  = @UpdatedAt WHERE id={Id};";
+                    $"PracticeHours = @PracticeHours, Updated_At  = @UpdatedAt WHERE id={Id};";
                 var result = await _connection.ExecuteAsync(query, model);
 
                 return result;
