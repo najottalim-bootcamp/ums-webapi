@@ -8,7 +8,7 @@ using UMS.Domain.Entities.People;
 
 namespace UMS.DataAccess.Repositories.PersonalDatas
 {
-    internal class PersonalDataRepository : BaseRepository, IPersonalDataRepository
+    public class PersonalDataRepository : BaseRepository, IPersonalDataRepository
     {
         public async ValueTask<int> CreateAsync(PersonalData model)
         {
@@ -17,7 +17,7 @@ namespace UMS.DataAccess.Repositories.PersonalDatas
                 await _connection.OpenAsync();
 
                 string query = "INSERT INTO PersonalData (FirstName,MiddleName,LastName,CityId,CountryId,Email," +
-                    "Gender,PhoneNumber,ImagePath,CreatedAt) VAlUES (@FirstName,@MiddleName,@LastName,@CityId," +
+                    "Gender,PhoneNumber,ImagePath,Created_at) VAlUES (@FirstName,@MiddleName,@LastName,@CityId," +
                     "@CountryId,@Email,@Gender,@PhoneNumber,@ImagePath,@CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
