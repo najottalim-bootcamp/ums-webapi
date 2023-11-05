@@ -131,8 +131,6 @@
                 await _connection.OpenAsync();
 
                 string query = $"UPDATE Country SET Name = @Name,Updated_at = @UpdatedAt WHERE Id = {Id};";
-                //Update Country set Name = 'USA' where Id = 1
-                //$"UPDATE AcadPosition SET Name = @Name, UpdatedAt = @UpdatedAt WHERE id = {Id};"
                 var result = (await _connection.ExecuteAsync(query,model));
                 return result;
             }
