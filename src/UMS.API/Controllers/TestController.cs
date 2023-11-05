@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using UMS.DataAccess.Common.Paginations;
 using UMS.DataAccess.Dtos.Cities;
-using UMS.DataAccess.Dtos.Teachers;
-using UMS.DataAccess.Repositories.AcadPositions;
 using UMS.DataAccess.Repositories.Cities;
 using UMS.Domain.Entities.Locations;
 
@@ -23,7 +20,7 @@ namespace UMS.API.Controllers
         [HttpPost]
         public async ValueTask<IActionResult> CreateAsync([FromForm] CityDto dto)
         {
-            City city = new City(); 
+            City city = new City();
             city.Name = dto.Name;
             city.CreatedAt = DateTime.Now;
 
@@ -32,7 +29,7 @@ namespace UMS.API.Controllers
         }
 
         [HttpGet]
-        public async ValueTask<IActionResult> GetAsync([FromQuery] long id) 
+        public async ValueTask<IActionResult> GetAsync([FromQuery] long id)
         {
             var res = await _repository.GetByIdAsync(id);
             return Ok(res);
@@ -46,12 +43,12 @@ namespace UMS.API.Controllers
         }
 
         [HttpPut]
-        public async ValueTask<IActionResult> UpdateAsync( long id, [FromForm] CityDto dto)
+        public async ValueTask<IActionResult> UpdateAsync(long id, [FromForm] CityDto dto)
         {
-            City  city =  new City();
+            City city = new City();
 
             city.Name = dto.Name;
-            city.UpdatedAt  = DateTime.Now;
+            city.UpdatedAt = DateTime.Now;
 
             var res = await _repository.UpdateAsync(id, city);
             return Ok(res);
@@ -65,7 +62,7 @@ namespace UMS.API.Controllers
         }
 
         [HttpGet]
-        public async ValueTask<IActionResult> GetPageItems([FromForm] int pageNumber, int  pageSize)
+        public async ValueTask<IActionResult> GetPageItems([FromForm] int pageNumber, int pageSize)
         {
             var res = await _repository.GetPageItems(new PaginationParams(pageNumber, pageSize));
             return Ok(res);

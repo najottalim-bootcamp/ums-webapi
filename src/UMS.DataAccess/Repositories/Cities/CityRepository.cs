@@ -9,7 +9,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO City(Name, Created_At)  VAlUES(@Name, @CreatedAt);";
+                string query = $"INSERT INTO City(Name, Created_At)  VAlUES(@Name, @CreatedAt);";
                 
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
