@@ -3,14 +3,14 @@
     public class ContractRepository : BaseRepository, IContractRepository
     {
         //Check it
-        public async ValueTask<int> CreateAsync(ContractDto model)
+        public async ValueTask<int> CreateAsync(Contract model)
         {
             try
             {
                 await _connection.OpenAsync();
 
                 string query = @"INSERT INTO Contract(FacultId,StudentId,Price,CreatedAt)
-                                            VAlUES(@FacultId,@StudentId,@Price,@CreatedAt);";
+                                            VALUES(@FacultId,@StudentId,@Price,@CreatedAt);";
 
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
@@ -128,7 +128,7 @@
             }
         }
         //Check it
-        public async ValueTask<int> UpdateAsync(long Id, ContractDto model)
+        public async ValueTask<int> UpdateAsync(long Id, Contract model)
         {
             try
             {

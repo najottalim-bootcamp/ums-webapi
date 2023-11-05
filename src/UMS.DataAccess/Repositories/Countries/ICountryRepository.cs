@@ -1,6 +1,6 @@
 ﻿namespace UMS.DataAccess.Repositories.Countries
 {
-    internal interface ICountryRepository:IBaseRepository<Country,CountryDto>
+    internal interface ICountryRepository:IBaseRepository<Country>
     {
     }
 }

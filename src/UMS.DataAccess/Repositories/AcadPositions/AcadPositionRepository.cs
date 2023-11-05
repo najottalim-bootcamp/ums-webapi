@@ -4,7 +4,7 @@ namespace UMS.DataAccess.Repositories.AcadPositions;
 
 public class AcadPositionRepository : BaseRepository, IAcadPositionRepository
 {
-    public async ValueTask<int> CreateAsync(AcadPositionDto model)
+    public async ValueTask<int> CreateAsync(AcadPosition model)
     {
         try
         {
@@ -127,7 +127,7 @@ public class AcadPositionRepository : BaseRepository, IAcadPositionRepository
         }
     }
 
-    public async ValueTask<int> UpdateAsync(long Id, AcadPositionDto model)
+    public async ValueTask<int> UpdateAsync(long Id, AcadPosition model)
     {
         try
         {

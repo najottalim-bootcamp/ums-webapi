@@ -7,7 +7,7 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
     {
         
 
-        public async ValueTask<int> CreateAsync(EduFormDto model)
+        public async ValueTask<int> CreateAsync(EduForm model)
         {
             try
             {
@@ -130,7 +130,7 @@ namespace UMS.DataAccess.Repositories.EduFormPositions
 
         
 
-        public async ValueTask<int> UpdateAsync(long Id, EduFormDto model)
+        public async ValueTask<int> UpdateAsync(long Id, EduForm model)
         {
             try
             {
