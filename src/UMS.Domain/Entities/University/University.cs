@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace UMS.Domain.Entities.University
+﻿namespace UMS.Domain.Entities.University
 {
     public class University : BaseEntity
     {
