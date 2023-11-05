@@ -10,7 +10,7 @@ public class AcadPositionRepository : BaseRepository, IAcadPositionRepository
         {
             await _connection.OpenAsync();
 
-            string query = "INSERT INTO AcadPosition VALUES(@Name, @CreatedAt);";
+            string query = "INSERT INTO AcadPosition(Name, Created_At) VALUES(@Name, @CreatedAt);";
             int result = await _connection.ExecuteAsync(query, model);
             return result;
         }
@@ -133,7 +133,7 @@ public class AcadPositionRepository : BaseRepository, IAcadPositionRepository
         {
             await _connection.OpenAsync();
 
-            string query = $"UPDATE AcadPosition SET Name = @Name, UpdatedAt = @UpdatedAt WHERE id = {Id};";
+            string query = $"UPDATE AcadPosition SET Name = @Name, Updated_At = @UpdatedAt WHERE id = {Id};";
             var result = await _connection.ExecuteAsync(query, model);
 
             return result;
