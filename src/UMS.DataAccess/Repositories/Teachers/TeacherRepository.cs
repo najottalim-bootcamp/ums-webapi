@@ -2,7 +2,7 @@
 {
     public class TeacherRepository : BaseRepository, ITeacherRepository
     {
-        public async ValueTask<int> CreateAsync(TeacherDTO model)
+        public async ValueTask<int> CreateAsync(Teacher model)
         {
             try
             {
@@ -125,7 +125,7 @@
             }
         }
 
-        public ValueTask<int> UpdateAsync(long Id, TeacherDTO model)
+        public ValueTask<int> UpdateAsync(long Id, Teacher model)
         {
             throw new NotImplementedException();
         }

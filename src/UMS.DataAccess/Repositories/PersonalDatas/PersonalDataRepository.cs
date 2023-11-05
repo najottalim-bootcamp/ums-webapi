@@ -10,7 +10,7 @@ namespace UMS.DataAccess.Repositories.PersonalDatas
 {
     internal class PersonalDataRepository : BaseRepository, IPersonalDataRepository
     {
-        public async ValueTask<int> CreateAsync(PersonalDataDto model)
+        public async ValueTask<int> CreateAsync(PersonalData model)
         {
             try
             {
@@ -135,7 +135,7 @@ namespace UMS.DataAccess.Repositories.PersonalDatas
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, PersonalDataDto model)
+        public async ValueTask<int> UpdateAsync(long Id, PersonalData model)
         {
             try
             {

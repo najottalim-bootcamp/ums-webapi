@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Dtos\Новая папка\**" />
+    <EmbeddedResource Remove="Dtos\Новая папка\**" />
+    <None Remove="Dtos\Новая папка\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.15" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
@@ -22,6 +28,5 @@
   <ItemGroup>
     <Folder Include="Dtos\University\" />
     <Folder Include="Dtos\Education\" />
-    <Folder Include="Dtos\Новая папка\" />
   </ItemGroup>
 </Project>

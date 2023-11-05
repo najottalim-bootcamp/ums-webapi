@@ -3,7 +3,7 @@
     public class ContractRepository : BaseRepository, IContractRepository
     {
         //Check it
-        public async ValueTask<int> CreateAsync(ContractDto model)
+        public async ValueTask<int> CreateAsync(Contract model)
         {
             try
             {
@@ -128,7 +128,7 @@
             }
         }
         //Check it
-        public async ValueTask<int> UpdateAsync(long Id, ContractDto model)
+        public async ValueTask<int> UpdateAsync(long Id, Contract model)
         {
             try
             {
