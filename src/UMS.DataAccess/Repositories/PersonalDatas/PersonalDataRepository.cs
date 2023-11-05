@@ -142,7 +142,7 @@ namespace UMS.DataAccess.Repositories.PersonalDatas
                 await _connection.OpenAsync();
 
                 string query = $"UPDATE PersonalData SET FirstName = @FirstName,MiddleName = @MiddleName,LastName = @LastName" +
-                    $",CityId = @CityId,CountryId = @CountryId,Email = @Email,Gender = @Gender,PhoneNumber = @PhoneNumber,ImagePath = @ImagePath, @UpdatedAt = @UpdatedAt WHERE id={Id};";
+                    $",CityId = @CityId,CountryId = @CountryId,Email = @Email,Gender = @Gender,PhoneNumber = @PhoneNumber,ImagePath = @ImagePath, Updated_At = @UpdatedAt WHERE id={Id};";
                 var result = await _connection.ExecuteAsync(query, model);
 
                 return result;
