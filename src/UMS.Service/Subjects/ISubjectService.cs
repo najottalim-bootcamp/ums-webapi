@@ -1,7 +1,4 @@
-﻿using UMS.DataAccess.Dtos.Subjects;
-using UMS.Domain.Entities.EduModels;
-
-namespace UMS.Service.Subjects
+﻿namespace UMS.Service.Subjects
 {
 	public interface ISubjectService
 	{
