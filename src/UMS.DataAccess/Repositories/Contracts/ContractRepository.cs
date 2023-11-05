@@ -10,7 +10,7 @@
                 await _connection.OpenAsync();
 
                 string query = @"INSERT INTO Contract(FacultId,StudentId,Price,CreatedAt)
-                                            VAlUES(@FacultId,@StudentId,@Price,@CreatedAt);";
+                                            VALUES(@FacultId,@StudentId,@Price,@CreatedAt);";
 
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;

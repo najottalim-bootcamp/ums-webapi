@@ -8,7 +8,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Country VALUES(@Name);";
+                string query = "INSERT INTO Country VALUES(@Name, @CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
 
                 return result;
