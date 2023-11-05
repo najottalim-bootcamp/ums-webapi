@@ -8,7 +8,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Branch VALUES(@Name, @Address, @PostCode , @UniversityId , @CityID)";
+                string query = "INSERT INTO Branch VALUES(@Name, @Address, @PostCode , @UniversityId , @CityID, @CreatedAt)";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -130,7 +130,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = $"UPDATE Branch SET Name = @Name,Address=@Address,PostCode=@PostCode,UniversityId=@UniversityId, CityId=@CityId WHERE id={Id};";
+                string query = $"UPDATE Branch SET Name = @Name, Address=@Address, PostCode=@PostCode, UniversityId=@UniversityId, CityId=@CityId, UpdatedAt = @UpdatedAt WHERE id={Id};";
                 var result = (await _connection.ExecuteAsync(query));
                 return result;
             }
