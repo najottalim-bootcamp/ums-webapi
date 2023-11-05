@@ -1,16 +1,14 @@
-﻿namespace UMS.DataAccess.Repositories.Cities
+﻿namespace UMS.DataAccess.Repositories.Universities
 {
-    public class CityRepository : BaseRepository, ICityRepository
+    public class UniversityRepository : BaseRepository, IUniversityRepository
     {
-        //Check it
-        public async ValueTask<int> CreateAsync(City model)
+        public async ValueTask<int> CreateAsync(UniversityDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO City(Name, Created_At)  VAlUES(@Name, @CreatedAt);";
-                
+                string query = "INSERT INTO University VALUES(@Name, @Description, @ImagePath)";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -30,7 +28,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "DELETE FROM City WHERE Id = @Id;";
+                string query = "DELETE FROM University WHERE Id=@Id";
                 int result = await _connection.ExecuteAsync(query, new { Id = Id });
                 return result;
             }
@@ -44,19 +42,20 @@
             }
         }
 
-        public async ValueTask<IList<City>> GetAllAsync()
+        public async ValueTask<IList<University>> GetAllAsync()
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM City;";
-                var result = (await _connection.QueryAsync<City>(query)).ToList();
+                string query = "SELECT * FROM University";
+                var result = (await _connection.QueryAsync<University>(query)).ToList();
+                           
                 return result;
             }
             catch
             {
-                return new List<City>();
+                return new List<University>();
             }
             finally
             {
@@ -64,20 +63,19 @@
             }
         }
 
-        public async ValueTask<City> GetByIdAsync(long Id)
+        public async ValueTask<University> GetByIdAsync(long Id)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = $"SELECT * FROM City WHERE Id = @Id";
-                var city = await _connection.QueryFirstOrDefaultAsync<City>(query, new { Id = Id });
-
-                return city;
+                string query = "SELECT * FROM University where Id = @Id;";
+                var result = (await _connection.QueryFirstOrDefaultAsync<University>(query, new { Id = Id }));
+                return result;
             }
             catch
             {
-                return new City();
+                return new University();
             }
             finally
             {
@@ -91,10 +89,9 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT COUNT(*) FROM City;";
-                long count = _connection.ExecuteScalar<long>(query);
-
-                return count;
+                string query = "SELECT COUNT(*) FROM University;";
+                var result = (_connection.ExecuteScalar<long>(query));
+                return result;
             }
             catch
             {
@@ -106,37 +103,35 @@
             }
         }
 
-        public async ValueTask<IList<City>> GetPageItems(PaginationParams @params)
+        public async ValueTask<IList<University>> GetPageItems(PaginationParams @params)
         {
             try
             {
                 await _connection.OpenAsync();
-                string query = $"SELECT * FROM City ORDER BY Id DESC " +
-                    $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
 
-                var cities = (await _connection.QueryAsync<City>(query)).ToList();
-                return cities;
+                string query = $"SELECT * FROM University ORDER BY Id DESC " +
+                                  $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
+                var result = (await _connection.QueryAsync<University>(query)).ToList();
+                return result;
             }
             catch
             {
-                return new List<City>();
+                return new List<University>();
             }
             finally
             {
                 await _connection.CloseAsync();
             }
         }
-        //Check it
-        public async ValueTask<int> UpdateAsync(long Id, City model)
+
+        public async ValueTask<int> UpdateAsync(long Id, UniversityDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = $"UPDATE City SET Name=@Name, Updated_At = @UpdatedAt WHERE id={Id};";
-
-                var result = await _connection.ExecuteAsync(query, model);
-
+                string query = $"UPDATE University SET Name = @Name,Description=@Description,ImagePath=@ImagePath WHERE id={Id};";
+                var result = (await _connection.ExecuteAsync(query));
                 return result;
             }
             catch
@@ -150,3 +145,4 @@
         }
     }
 }
+

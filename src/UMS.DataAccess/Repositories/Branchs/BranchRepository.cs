@@ -1,16 +1,14 @@
-﻿namespace UMS.DataAccess.Repositories.Cities
+﻿namespace UMS.DataAccess.Repositories.Branchs
 {
-    public class CityRepository : BaseRepository, ICityRepository
+    public class BranchRepository : BaseRepository, IBranchRepository
     {
-        //Check it
-        public async ValueTask<int> CreateAsync(City model)
+        public async ValueTask<int> CreateAsync(BranchDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO City(Name, Created_At)  VAlUES(@Name, @CreatedAt);";
-                
+                string query = "INSERT INTO Branch VALUES(@Name, @Address, @PostCode , @UniversityId , @CityID, @CreatedAt)";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -30,7 +28,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "DELETE FROM City WHERE Id = @Id;";
+                string query = "DELETE FROM Branch WHERE Id=@Id";
                 int result = await _connection.ExecuteAsync(query, new { Id = Id });
                 return result;
             }
@@ -44,19 +42,20 @@
             }
         }
 
-        public async ValueTask<IList<City>> GetAllAsync()
+        public async ValueTask<IList<Branch>> GetAllAsync()
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM City;";
-                var result = (await _connection.QueryAsync<City>(query)).ToList();
+                string query = "SELECT * FROM Branch";
+                var result = (await _connection.QueryAsync<Branch>(query)).ToList();
+
                 return result;
             }
             catch
             {
-                return new List<City>();
+                return new List<Branch>();
             }
             finally
             {
@@ -64,20 +63,19 @@
             }
         }
 
-        public async ValueTask<City> GetByIdAsync(long Id)
+        public async ValueTask<Branch> GetByIdAsync(long Id)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = $"SELECT * FROM City WHERE Id = @Id";
-                var city = await _connection.QueryFirstOrDefaultAsync<City>(query, new { Id = Id });
-
-                return city;
+                string query = "SELECT * FROM Branch where Id = @Id;";
+                var result = (await _connection.QueryFirstOrDefaultAsync<Branch>(query, new { Id = Id }));
+                return result;
             }
             catch
             {
-                return new City();
+                return new Branch();
             }
             finally
             {
@@ -91,10 +89,9 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT COUNT(*) FROM City;";
-                long count = _connection.ExecuteScalar<long>(query);
-
-                return count;
+                string query = "SELECT COUNT(*) FROM Branch;";
+                var result = (_connection.ExecuteScalar<long>(query));
+                return result;
             }
             catch
             {
@@ -106,37 +103,35 @@
             }
         }
 
-        public async ValueTask<IList<City>> GetPageItems(PaginationParams @params)
+        public async ValueTask<IList<Branch>> GetPageItems(PaginationParams @params)
         {
             try
             {
                 await _connection.OpenAsync();
-                string query = $"SELECT * FROM City ORDER BY Id DESC " +
-                    $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
 
-                var cities = (await _connection.QueryAsync<City>(query)).ToList();
-                return cities;
+                string query = $"SELECT * FROM Branch ORDER BY Id DESC " +
+                                  $"OFFSET {@params.GetSkipCount()} LIMIT {@params.PageSize}";
+                var result = (await _connection.QueryAsync<Branch>(query)).ToList();
+                return result;
             }
             catch
             {
-                return new List<City>();
+                return new List<Branch>();
             }
             finally
             {
                 await _connection.CloseAsync();
             }
         }
-        //Check it
-        public async ValueTask<int> UpdateAsync(long Id, City model)
+
+        public async ValueTask<int> UpdateAsync(long Id, BranchDto model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = $"UPDATE City SET Name=@Name, Updated_At = @UpdatedAt WHERE id={Id};";
-
-                var result = await _connection.ExecuteAsync(query, model);
-
+                string query = $"UPDATE Branch SET Name = @Name, Address=@Address, PostCode=@PostCode, UniversityId=@UniversityId, CityId=@CityId, UpdatedAt = @UpdatedAt WHERE id={Id};";
+                var result = (await _connection.ExecuteAsync(query));
                 return result;
             }
             catch
@@ -150,3 +145,4 @@
         }
     }
 }
+
