@@ -1,6 +1,4 @@
-﻿using UMS.DataAccess.Dtos.Education;
-
-namespace UMS.Service.Specialties
+﻿namespace UMS.Service.Specialties
 {
 	public interface ISpecialtyService
 	{
