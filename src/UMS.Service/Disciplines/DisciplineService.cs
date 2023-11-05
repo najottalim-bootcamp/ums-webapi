@@ -1,16 +1,16 @@
-﻿
-
-namespace UMS.Service.Disciplines
+﻿namespace UMS.Service.Disciplines
 {
-    public class DisciplineService : IDistiplineService
+    public class DisciplineService : IDisciplineService
     {
         private readonly IDisciplineRepository _disciplineRepository;
+
         public DisciplineService(IDisciplineRepository disciplineRepository)
         {
             _disciplineRepository = disciplineRepository;
         }
 
         public async Task<long> CountAsync() => await _disciplineRepository.GetCountAsync();
+
         public async ValueTask<bool> CreateAsync(DisciplineDto disciplineDto)
         {
             Discipline discipline = new Discipline()

@@ -1,8 +1,6 @@
-﻿using UMS.DataAccess.Dtos.Discipline;
-
-namespace UMS.Service.Disciplines
+﻿namespace UMS.Service.Disciplines
 {
-    public interface IDistiplineService
+    public interface IDisciplineService
     {
         public Task<long> CountAsync();
         public ValueTask<bool> CreateAsync(DisciplineDto disciplineDto);
