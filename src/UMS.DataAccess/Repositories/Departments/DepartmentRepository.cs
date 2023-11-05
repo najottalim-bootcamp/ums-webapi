@@ -8,7 +8,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Department VALUES(@Name,@FacultyId)";
+                string query = "INSERT INTO Department VALUES(@Name, @FacultyId)";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -131,7 +131,7 @@
                 await _connection.OpenAsync();
 
                 string query = $"UPDATE Department SET Name = @Name,FacultyId=@FacultyId WHERE id={Id};";
-                var result = (await _connection.ExecuteAsync(query));
+                var result = (await _connection.ExecuteAsync(query, model));
                 return result;
             }
             catch
