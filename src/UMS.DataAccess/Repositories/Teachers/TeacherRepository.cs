@@ -8,7 +8,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Teacher VALUES(@DepartmentId, @PersonalDataId, @AcadPositionId, @ScienDegreeId, @CreatedAt);";
+                string query = "INSERT INTO Teacher VALUES(@DepartmentId, @PersonalDataId, @AcadPositionId, @ScienDegreeId);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
