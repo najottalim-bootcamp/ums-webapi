@@ -8,7 +8,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO SpecialtyEduForm VALUES(@EduFormId, @SpecialtyId, @CreatedAt);";
+                string query = "INSERT INTO SpecialtyEduForm VALUES(@EduFormId, @SpecialtyId);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
