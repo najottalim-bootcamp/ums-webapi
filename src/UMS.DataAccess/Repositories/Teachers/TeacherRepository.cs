@@ -8,7 +8,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Teacher VALUES(@DepartmentId, @PersonalDataId, @AcadPositionId, @ScienDegreeId);";
+                string query = "INSERT INTO Teachers VALUES(@DepartmentId, @PersonalDataId, @AcadPositionId, @ScienDegreeId);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -28,7 +28,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "DELETE FROM Teacher WHERE Id = @Id;";
+                string query = "DELETE FROM Teachers WHERE Id = @Id;";
                 int result = await _connection.ExecuteAsync(query, new { Id = Id });
                 return result;
             }
@@ -48,7 +48,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "SELECT * FROM Teacher;";
+                string query = "SELECT * FROM Teachers;";
                 var result = (await _connection.QueryAsync<Teacher>(query)).ToList();
                 return result;
             }
@@ -68,7 +68,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = $"SELECT * FROM Teacher WHERE Id = @Id";
+                string query = $"SELECT * FROM Teachers WHERE Id = @Id";
                 var teacher = await _connection.QueryFirstOrDefaultAsync<Teacher>(query, new { Id = Id });
 
                 return teacher;
