@@ -2,7 +2,7 @@
 {
     public class FacultyRepository : BaseRepository, IFacultyRepository
     {
-        public async ValueTask<int> CreateAsync(FacultyDto model)
+        public async ValueTask<int> CreateAsync(Faculty model)
         {
             try
             {
@@ -124,7 +124,7 @@
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, FacultyDto model)
+        public async ValueTask<int> UpdateAsync(long Id, Faculty model)
         {
             try
             {
