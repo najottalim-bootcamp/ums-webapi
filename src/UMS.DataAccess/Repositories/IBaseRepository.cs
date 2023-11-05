@@ -9,5 +9,4 @@ public interface IBaseRepository<TModel> where TModel : class
     public ValueTask<IList<TModel>> GetAllAsync();
     public ValueTask<IList<TModel>> GetPageItems(PaginationParams @params);
     public ValueTask<long> GetCountAsync();
-
 }
