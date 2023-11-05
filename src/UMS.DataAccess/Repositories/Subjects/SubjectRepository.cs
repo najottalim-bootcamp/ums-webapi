@@ -3,7 +3,7 @@
     public class SubjectRepository : BaseRepository, ISubjectRepository
     {
         //Check it
-        public async ValueTask<int> CreateAsync(SubjectDto model)
+        public async ValueTask<int> CreateAsync(Subject model)
         {
             try
             {
@@ -128,7 +128,7 @@
             }
         }
         //Check it
-        public async ValueTask<int> UpdateAsync(long Id, SubjectDto model)
+        public async ValueTask<int> UpdateAsync(long Id, Subject model)
         {
             try
             {

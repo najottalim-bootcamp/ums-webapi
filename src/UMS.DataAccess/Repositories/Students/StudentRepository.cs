@@ -1,9 +1,9 @@
-﻿namespace UMS.DataAccess.Repositories.Students
+﻿    namespace UMS.DataAccess.Repositories.Students
 {
     public class StudentRepository : BaseRepository, IStudentRepository
     {
         //Check it
-        public async ValueTask<int> CreateAsync(StudentDto model)
+        public async ValueTask<int> CreateAsync(Student model)
         {
             try
             {
@@ -128,7 +128,7 @@
             }
         }
         //Check it
-        public async ValueTask<int> UpdateAsync(long Id, StudentDto model)
+        public async ValueTask<int> UpdateAsync(long Id, Student model)
         {
             try
             {

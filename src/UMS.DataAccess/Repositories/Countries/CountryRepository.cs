@@ -2,7 +2,7 @@
 {
     public class CountryRepository : BaseRepository, ICountryRepository
     {
-        public async ValueTask<int> CreateAsync(CountryDto model)
+        public async ValueTask<int> CreateAsync(Country model)
         {
             try
             {
@@ -124,7 +124,7 @@
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, CountryDto model)
+        public async ValueTask<int> UpdateAsync(long Id, Country model)
         {
             try
             {
