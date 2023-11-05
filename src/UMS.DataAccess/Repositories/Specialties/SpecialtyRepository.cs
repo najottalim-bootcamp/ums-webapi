@@ -9,7 +9,7 @@ namespace UMS.DataAccess.Repositories.Specialties
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Specialty VALUES(@Name, @DepartmentId, @CreatedAt);";
+                string query = "INSERT INTO Specialty VALUES(@Name, @DepartmentId);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -132,7 +132,7 @@ namespace UMS.DataAccess.Repositories.Specialties
             {
                 await _connection.OpenAsync();
 
-                string query = $"UPDATE Specialty SET Name = @Name, UpdatedAt = @UpdatedAt WHERE id = {Id};";
+                string query = $"UPDATE Specialty SET Name = @Name WHERE id = {Id};";
                 var result = await _connection.ExecuteAsync(query, model);
 
                 return result;
