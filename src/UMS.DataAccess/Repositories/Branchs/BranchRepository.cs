@@ -2,7 +2,7 @@
 {
     public class BranchRepository : BaseRepository, IBranchRepository
     {
-        public async ValueTask<int> CreateAsync(BranchDto model)
+        public async ValueTask<int> CreateAsync(Branch model)
         {
             try
             {
@@ -124,7 +124,7 @@
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, BranchDto model)
+        public async ValueTask<int> UpdateAsync(long Id, Branch model)
         {
             try
             {
