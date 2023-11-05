@@ -1,9 +1,4 @@
-﻿using UMS.DataAccess.Dtos.Subjects;
-using UMS.DataAccess.Repositories.Subjects;
-using UMS.Domain.Entities.EduModels;
-using UMS.Domain.Exceptions.Education;
-
-namespace UMS.Service.Subjects
+﻿namespace UMS.Service.Subjects
 {
     public class SubjectService : ISubjectService
     {
