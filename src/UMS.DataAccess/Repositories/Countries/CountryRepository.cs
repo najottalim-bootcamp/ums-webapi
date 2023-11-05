@@ -8,7 +8,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Country VALUES(@Name, @CreatedAt);";
+                string query = "INSERT INTO Country (Name,Created_at) VALUES(@Name, @CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
 
                 return result;
@@ -130,8 +130,10 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "UPDATE Country SET Name = @Name CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt;";
-                var result = (await _connection.ExecuteAsync(query));
+                string query = $"UPDATE Country SET Name = @Name,Updated_at = @UpdatedAt WHERE Id = {Id};";
+                //Update Country set Name = 'USA' where Id = 1
+                //$"UPDATE AcadPosition SET Name = @Name, UpdatedAt = @UpdatedAt WHERE id = {Id};"
+                var result = (await _connection.ExecuteAsync(query,model));
                 return result;
             }
             catch
