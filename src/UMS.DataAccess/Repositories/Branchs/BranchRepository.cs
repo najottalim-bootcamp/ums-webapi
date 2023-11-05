@@ -131,7 +131,7 @@
                 await _connection.OpenAsync();
 
                 string query = $"UPDATE Branch SET Name = @Name, Address=@Address, PostCode=@PostCode, UniversityId=@UniversityId, CityId=@CityId WHERE id={Id};";
-                var result = (await _connection.ExecuteAsync(query));
+                var result = (await _connection.ExecuteAsync(query, model));
                 return result;
             }
             catch
