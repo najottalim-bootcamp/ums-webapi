@@ -9,7 +9,7 @@ namespace UMS.DataAccess.Repositories.Specialties
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Specialty VALUES(@Name, @DepartmentId);";
+                string query = "INSERT INTO Specialty(Name, DepartmentId) VALUES(@Name, @DepartmentId);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
