@@ -131,7 +131,7 @@
                 await _connection.OpenAsync();
 
                 string query = $"UPDATE University SET Name = @Name,Description=@Description,ImagePath=@ImagePath WHERE id={Id};";
-                var result = (await _connection.ExecuteAsync(query));
+                var result = (await _connection.ExecuteAsync(query, model));
                 return result;
             }
             catch
