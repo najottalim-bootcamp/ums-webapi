@@ -1,4 +1,8 @@
 using UMS.DataAccess.Repositories.Cities;
+using UMS.DataAccess.Repositories.ScienDegrees;
+using UMS.DataAccess.Repositories.Specialties;
+using UMS.DataAccess.Repositories.SpecialtyEduForms;
+using UMS.DataAccess.Repositories.Teachers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +13,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICityRepository, CityRepository>();
+
+builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
+builder.Services.AddScoped<ISpecialtyEduFormRepository, SpecialtyEduFormRepository>();
+builder.Services.AddScoped<IScienDegreeRepository, ScienDegreeRepository>();
+builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 
 var app = builder.Build();
 
