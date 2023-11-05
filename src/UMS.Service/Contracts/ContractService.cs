@@ -12,7 +12,7 @@ namespace UMS.Service.Contracts
 
         public ContractService(IContractRepository contractRepository)
         {
-
+            _contractRepository = contractRepository;
         }
 
         public async ValueTask<bool> CreateAsync(ContractDto contractDto)
@@ -26,7 +26,7 @@ namespace UMS.Service.Contracts
 
             int result=await _contractRepository.CreateAsync(contract);
 
-            return result!=0;
+            return result > 0;
         }
 
         public async ValueTask<bool> DeleteAsync(long id)
@@ -36,7 +36,7 @@ namespace UMS.Service.Contracts
 
             int result=await _contractRepository.DeleteAsync(id);
 
-            return result !=0;
+            return result > 0;
         }
 
         public async ValueTask<IList<Contract>> GetAllAsync()
@@ -65,7 +65,7 @@ namespace UMS.Service.Contracts
 
             int result = await _contractRepository.UpdateAsync(id,contract);
 
-            return result != 0;
+            return result > 0;
         }
     }
 }
