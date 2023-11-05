@@ -11,3 +11,4 @@ global using UMS.DataAccess.Repositories.Specialties;
 global using UMS.DataAccess.Dtos.Education;
 global using UMS.DataAccess.Dtos.Discipline;
 global using UMS.DataAccess.Repositories.Disciplines;
+global using UMS.DataAccess.Repositories.SpecialtyEduForms;
