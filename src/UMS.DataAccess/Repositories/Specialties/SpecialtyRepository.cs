@@ -3,7 +3,7 @@ namespace UMS.DataAccess.Repositories.Specialties
 {
     public class SpecialtyRepository : BaseRepository, ISpecialtyRepository
     {
-        public async ValueTask<int> CreateAsync(SpecialtyDTO model)
+        public async ValueTask<int> CreateAsync(Specialty model)
         {
             try
             {
@@ -126,7 +126,7 @@ namespace UMS.DataAccess.Repositories.Specialties
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, SpecialtyDTO model)
+        public async ValueTask<int> UpdateAsync(long Id, Specialty model)
         {
             try
             {

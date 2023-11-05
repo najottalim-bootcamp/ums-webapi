@@ -1,7 +1,7 @@
 ﻿
 namespace UMS.DataAccess.Repositories.Specialties
 {
-    public interface ISpecialtyRepository : IBaseRepository<Specialty, SpecialtyDTO>
+    public interface ISpecialtyRepository : IBaseRepository<Specialty>
     {
     }
 }

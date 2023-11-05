@@ -3,13 +3,14 @@
     public class CityRepository : BaseRepository, ICityRepository
     {
         //Check it
-        public async ValueTask<int> CreateAsync(CityDto model)
+        public async ValueTask<int> CreateAsync(City model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO City(Name, CreatedAt) VALUES(@Name, @CreatedAt);";
+                string query = "INSERT INTO City(Name, Created_At)  VAlUES(@Name, @CreatedAt);";
+                
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -126,13 +127,14 @@
             }
         }
         //Check it
-        public async ValueTask<int> UpdateAsync(long Id, CityDto model)
+        public async ValueTask<int> UpdateAsync(long Id, City model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = $"UPDATE City SET Name=@Name, UpdatedAt = @UpdatedAt WHERE id={Id};";
+                string query = $"UPDATE City SET Name=@Name, Updated_At = @UpdatedAt WHERE id={Id};";
+
                 var result = await _connection.ExecuteAsync(query, model);
 
                 return result;

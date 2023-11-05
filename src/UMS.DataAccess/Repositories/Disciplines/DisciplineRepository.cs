@@ -5,7 +5,7 @@ namespace UMS.DataAccess.Repositories.Disciplines
 {
     public class DisciplineRepository : BaseRepository, IDisciplineRepository
     {
-        public async ValueTask<int> CreateAsync(DisciplineDto model)
+        public async ValueTask<int> CreateAsync(Discipline model)
         {
             try
             {
@@ -129,7 +129,7 @@ namespace UMS.DataAccess.Repositories.Disciplines
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, DisciplineDto model)
+        public async ValueTask<int> UpdateAsync(long Id, Discipline model)
         {
             try
             {
