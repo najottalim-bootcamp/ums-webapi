@@ -1,9 +1,4 @@
-﻿using UMS.DataAccess.Dtos.Contracts;
-using UMS.DataAccess.Repositories.Contracts;
-using UMS.Domain.Entities.Payments;
-using UMS.Domain.Exceptions.Payments;
-
-namespace UMS.Service.Contracts
+﻿namespace UMS.Service.Contracts
 {
 
     public class ContractService : IContractService
