@@ -9,7 +9,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = @"INSERT INTO Students(PersonalDataId,Course,SpecialtyEduFormId,IsActive,EduType,GroupNumber,SubjectId,CreatedAt)
+                string query = @"INSERT INTO Students(PersonalDataId,Course,SpecialtyEduFormId,IsActive,EduType,GroupNumber,SubjectId,Created_At)
                                             VAlUES(@PersonalDataId,@Course,@SpecialtyEduFormId,@IsActive,@EduType,@GroupNumber,@SubjectId,@CreatedAt);";
 
                 int result = await _connection.ExecuteAsync(query, model);
@@ -135,7 +135,7 @@
                 await _connection.OpenAsync();
 
                 string query = @$"UPDATE Students SET PersonalDataId=@PersonalDataId,Course=@Course,SpecialtyEduFormId=@SpecialtyEduFormId,
-                                                        IsActive=@IsActive,EduType=@EduType,GroupNumber=@GroupNumber,SubjectId=@SubjectId,UpdatedAt=@UpdatedAt
+                                                        IsActive=@IsActive,EduType=@EduType,GroupNumber=@GroupNumber,SubjectId=@SubjectId,Updated_At=@UpdatedAt
                                                         WHERE id={Id};";
                 var result = await _connection.ExecuteAsync(query, model);
 
