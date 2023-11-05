@@ -1,8 +1,4 @@
 using UMS.DataAccess.Repositories.Cities;
-using UMS.DataAccess.Repositories.ScienDegrees;
-using UMS.DataAccess.Repositories.Specialties;
-using UMS.DataAccess.Repositories.SpecialtyEduForms;
-using UMS.DataAccess.Repositories.Teachers;
 
 var builder = WebApplication.CreateBuilder(args);
 
