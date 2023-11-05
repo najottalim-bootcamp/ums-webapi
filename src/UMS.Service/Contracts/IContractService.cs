@@ -1,7 +1,4 @@
-﻿using UMS.DataAccess.Dtos.Contracts;
-using UMS.Domain.Entities.Payments;
-
-namespace UMS.Service.Contracts
+﻿namespace UMS.Service.Contracts
 {
 	public interface IContractService
 	{
