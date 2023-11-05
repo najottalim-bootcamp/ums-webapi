@@ -3,14 +3,14 @@
     public class SubjectRepository : BaseRepository, ISubjectRepository
     {
         //Check it
-        public async ValueTask<int> CreateAsync(SubjectDto model)
+        public async ValueTask<int> CreateAsync(Subject model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = @"INSERT INTO Subjects(Name,SpecialityId,CreatedAt)
-                                            VAlUES(@Name,@SpecialityId,@CreatedAt);";
+                string query = @"INSERT INTO Subjects(Name,SpecialtyId,Created_At)
+                                            VAlUES(@Name,@SpecialtyId,@CreatedAt);";
 
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
@@ -128,13 +128,13 @@
             }
         }
         //Check it
-        public async ValueTask<int> UpdateAsync(long Id, SubjectDto model)
+        public async ValueTask<int> UpdateAsync(long Id, Subject model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = @$"UPDATE Subjects SET Name=@Name,SpecialityId=@SpecialityId,UpdatedAt=@UpdatedAt 
+                string query = @$"UPDATE Subjects SET Name=@Name,SpecialtyId=@SpecialtyId,Updated_At=@UpdatedAt 
                                     WHERE id={Id};";
                 var result = await _connection.ExecuteAsync(query, model);
 

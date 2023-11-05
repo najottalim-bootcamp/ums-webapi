@@ -3,13 +3,13 @@ namespace UMS.DataAccess.Repositories.Specialties
 {
     public class SpecialtyRepository : BaseRepository, ISpecialtyRepository
     {
-        public async ValueTask<int> CreateAsync(SpecialtyDTO model)
+        public async ValueTask<int> CreateAsync(Specialty model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Specialty VALUES(@Name, @DepartmentId, @CreatedAt);";
+                string query = "INSERT INTO Specialty(Name, DepartmentId) VALUES(@Name, @DepartmentId);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -126,13 +126,13 @@ namespace UMS.DataAccess.Repositories.Specialties
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, SpecialtyDTO model)
+        public async ValueTask<int> UpdateAsync(long Id, Specialty model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = $"UPDATE Specialty SET Name = @Name, UpdatedAt = @UpdatedAt WHERE id = {Id};";
+                string query = $"UPDATE Specialty SET Name = @Name, DepartmentId = @DepartmentId WHERE id = {Id};";
                 var result = await _connection.ExecuteAsync(query, model);
 
                 return result;

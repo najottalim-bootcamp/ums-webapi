@@ -1,6 +1,6 @@
 ﻿namespace UMS.DataAccess.Repositories.Universities
 {
-	public interface IUniversityRepository:IBaseRepository<University,UniversityDto>
+	public interface IUniversityRepository:IBaseRepository<University>
 	{
 
 	}

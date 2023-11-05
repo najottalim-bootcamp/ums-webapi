@@ -2,13 +2,13 @@
 {
     public class CountryRepository : BaseRepository, ICountryRepository
     {
-        public async ValueTask<int> CreateAsync(CountryDto model)
+        public async ValueTask<int> CreateAsync(Country model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Country VALUES(@Name);";
+                string query = "INSERT INTO Country (Name,Created_at) VALUES(@Name, @CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
 
                 return result;
@@ -124,14 +124,14 @@
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, CountryDto model)
+        public async ValueTask<int> UpdateAsync(long Id, Country model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "UPDATE Country SET Name = @Name CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt;";
-                var result = (await _connection.ExecuteAsync(query));
+                string query = $"UPDATE Country SET Name = @Name,Updated_at = @UpdatedAt WHERE Id = {Id};";
+                var result = (await _connection.ExecuteAsync(query,model));
                 return result;
             }
             catch

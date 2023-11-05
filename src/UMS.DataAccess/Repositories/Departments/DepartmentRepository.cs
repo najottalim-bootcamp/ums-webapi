@@ -2,13 +2,13 @@
 {
     public class DepartmentRepository : BaseRepository, IDepartmentRepository
     {
-        public async ValueTask<int> CreateAsync(DepartmentDto model)
+        public async ValueTask<int> CreateAsync(Department model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Department VALUES(@Name,@FacultyId)";
+                string query = "INSERT INTO Department VALUES(@Name, @FacultyId)";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -124,14 +124,14 @@
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, DepartmentDto model)
+        public async ValueTask<int> UpdateAsync(long Id, Department model)
         {
             try
             {
                 await _connection.OpenAsync();
 
                 string query = $"UPDATE Department SET Name = @Name,FacultyId=@FacultyId WHERE id={Id};";
-                var result = (await _connection.ExecuteAsync(query));
+                var result = (await _connection.ExecuteAsync(query, model));
                 return result;
             }
             catch

@@ -5,13 +5,13 @@ namespace UMS.DataAccess.Repositories.Disciplines
 {
     public class DisciplineRepository : BaseRepository, IDisciplineRepository
     {
-        public async ValueTask<int> CreateAsync(DisciplineDto model)
+        public async ValueTask<int> CreateAsync(Discipline model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO Discipline(Name,DepartmentId,TeacherId,LectureHours,PracticeHours,CreatedAt)" +
+                string query = "INSERT INTO Discipline(Name,DepartmentId,TeacherId,LectureHours,PracticeHours,Created_At)" +
                     " VAlUES(@Name,@DepartmentId,@TeacherId,@LectureHours,@PracticeHours,@CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
@@ -129,14 +129,14 @@ namespace UMS.DataAccess.Repositories.Disciplines
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, DisciplineDto model)
+        public async ValueTask<int> UpdateAsync(long Id, Discipline model)
         {
             try
             {
                 await _connection.OpenAsync();
 
                 string query = $"UPDATE Discipline SET Name = @Name,DepartmentId = @DepartmentId,TeacherId = @TeacherId,LectureHours = @LectureHours," +
-                    $"PracticeHours = @PracticeHours, UpdatedAt  = @UpdatedAt WHERE id={Id};";
+                    $"PracticeHours = @PracticeHours, Updated_At  = @UpdatedAt WHERE id={Id};";
                 var result = await _connection.ExecuteAsync(query, model);
 
                 return result;

@@ -2,13 +2,13 @@
 {
     public class ScienDegreeRepository : BaseRepository, IScienDegreeRepository
     {
-        public async ValueTask<int> CreateAsync(ScienDegreeDTO model)
+        public async ValueTask<int> CreateAsync(ScienDegree model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO ScienDegree VALUES(@Name, @CreatedAt);";
+                string query = "INSERT INTO ScienDegree(Name, Created_At) VALUES(@Name, @CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -125,13 +125,13 @@
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, ScienDegreeDTO model)
+        public async ValueTask<int> UpdateAsync(long Id, ScienDegree model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = $"UPDATE ScienDegree SET Name = @Name, UpdatedAt = @UpdatedAt WHERE id = {Id};";
+                string query = $"UPDATE ScienDegree SET Name = @Name, Updated_At = @UpdatedAt WHERE id = {Id};";
                 var result = await _connection.ExecuteAsync(query, model);
 
                 return result;

@@ -2,7 +2,7 @@
 {
     public class UniversityRepository : BaseRepository, IUniversityRepository
     {
-        public async ValueTask<int> CreateAsync(UniversityDto model)
+        public async ValueTask<int> CreateAsync(University model)
         {
             try
             {
@@ -124,14 +124,14 @@
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, UniversityDto model)
+        public async ValueTask<int> UpdateAsync(long Id, University model)
         {
             try
             {
                 await _connection.OpenAsync();
 
                 string query = $"UPDATE University SET Name = @Name,Description=@Description,ImagePath=@ImagePath WHERE id={Id};";
-                var result = (await _connection.ExecuteAsync(query));
+                var result = (await _connection.ExecuteAsync(query, model));
                 return result;
             }
             catch

@@ -8,16 +8,16 @@ using UMS.Domain.Entities.People;
 
 namespace UMS.DataAccess.Repositories.PersonalDatas
 {
-    internal class PersonalDataRepository : BaseRepository, IPersonalDataRepository
+    public class PersonalDataRepository : BaseRepository, IPersonalDataRepository
     {
-        public async ValueTask<int> CreateAsync(PersonalDataDto model)
+        public async ValueTask<int> CreateAsync(PersonalData model)
         {
             try
             {
                 await _connection.OpenAsync();
 
                 string query = "INSERT INTO PersonalData (FirstName,MiddleName,LastName,CityId,CountryId,Email," +
-                    "Gender,PhoneNumber,ImagePath,CreatedAt) VAlUES (@FirstName,@MiddleName,@LastName,@CityId," +
+                    "Gender,PhoneNumber,ImagePath,Created_at) VAlUES (@FirstName,@MiddleName,@LastName,@CityId," +
                     "@CountryId,@Email,@Gender,@PhoneNumber,@ImagePath,@CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
@@ -135,14 +135,14 @@ namespace UMS.DataAccess.Repositories.PersonalDatas
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, PersonalDataDto model)
+        public async ValueTask<int> UpdateAsync(long Id, PersonalData model)
         {
             try
             {
                 await _connection.OpenAsync();
 
                 string query = $"UPDATE PersonalData SET FirstName = @FirstName,MiddleName = @MiddleName,LastName = @LastName" +
-                    $",CityId = @CityId,CountryId = @CountryId,Email = @Email,Gender = @Gender,PhoneNumber = @PhoneNumber,ImagePath = @ImagePath, @UpdatedAt = @UpdatedAt WHERE id={Id};";
+                    $",CityId = @CityId,CountryId = @CountryId,Email = @Email,Gender = @Gender,PhoneNumber = @PhoneNumber,ImagePath = @ImagePath, Updated_At = @UpdatedAt WHERE id={Id};";
                 var result = await _connection.ExecuteAsync(query, model);
 
                 return result;

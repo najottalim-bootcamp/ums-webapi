@@ -2,7 +2,7 @@
 {
     public class BranchRepository : BaseRepository, IBranchRepository
     {
-        public async ValueTask<int> CreateAsync(BranchDto model)
+        public async ValueTask<int> CreateAsync(Branch model)
         {
             try
             {
@@ -124,14 +124,14 @@
             }
         }
 
-        public async ValueTask<int> UpdateAsync(long Id, BranchDto model)
+        public async ValueTask<int> UpdateAsync(long Id, Branch model)
         {
             try
             {
                 await _connection.OpenAsync();
 
-                string query = $"UPDATE Branch SET Name = @Name,Address=@Address,PostCode=@PostCode,UniversityId=@UniversityId, CityId=@CityId WHERE id={Id};";
-                var result = (await _connection.ExecuteAsync(query));
+                string query = $"UPDATE Branch SET Name = @Name, Address=@Address, PostCode=@PostCode, UniversityId=@UniversityId, CityId=@CityId WHERE id={Id};";
+                var result = (await _connection.ExecuteAsync(query, model));
                 return result;
             }
             catch
