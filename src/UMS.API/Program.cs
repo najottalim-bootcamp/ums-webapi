@@ -1,4 +1,7 @@
 using UMS.DataAccess.Repositories.Cities;
+using UMS.DataAccess.Repositories.Contracts;
+using UMS.DataAccess.Repositories.Students;
+using UMS.DataAccess.Repositories.Subjects;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<ICityRepository, CityRepository>();
+builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
 
 var app = builder.Build();
 

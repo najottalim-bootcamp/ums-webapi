@@ -1,8 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UMS.DataAccess.Common.Paginations;
 using UMS.DataAccess.Dtos.Cities;
+using UMS.DataAccess.Dtos.Contracts;
+using UMS.DataAccess.Dtos.Students;
+using UMS.DataAccess.Dtos.Subjects;
 using UMS.DataAccess.Repositories.Cities;
+using UMS.DataAccess.Repositories.Contracts;
+using UMS.DataAccess.Repositories.Students;
+using UMS.DataAccess.Repositories.Subjects;
+using UMS.Domain.Entities.EduModels;
 using UMS.Domain.Entities.Locations;
+using UMS.Domain.Entities.Payments;
+using UMS.Domain.Entities.Students;
 
 namespace UMS.API.Controllers
 {
@@ -10,21 +19,27 @@ namespace UMS.API.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        private readonly ICityRepository _repository;
+        private readonly ISubjectRepository _repository;
 
-        public TestController(ICityRepository repository)
+        public TestController(ISubjectRepository repository)
         {
             _repository = repository;
         }
 
         [HttpPost]
-        public async ValueTask<IActionResult> CreateAsync([FromForm] CityDto dto)
+        public async ValueTask<IActionResult> CreateAsync([FromForm] SubjectDto dto)
         {
-            City city = new City();
-            city.Name = dto.Name;
-            city.CreatedAt = DateTime.Now;
+            Subject subject = new Subject()
+            {
+                Name = dto.Name,
+                SpecialtyId = dto.SpecialtyId,
+                CreatedAt = DateTime.Now,
+            };
 
-            int result = await _repository.CreateAsync(city);
+
+
+            int result = await _repository.CreateAsync(subject);
+
             return Ok(result);
         }
 
@@ -43,14 +58,16 @@ namespace UMS.API.Controllers
         }
 
         [HttpPut]
-        public async ValueTask<IActionResult> UpdateAsync(long id, [FromForm] CityDto dto)
+        public async ValueTask<IActionResult> UpdateAsync(long id, [FromForm] SubjectDto dto)
         {
-            City city = new City();
+            Subject subject = new Subject()
+            {
+                Name = dto.Name,
+                SpecialtyId = dto.SpecialtyId,
+                UpdatedAt = DateTime.Now,
+            };
 
-            city.Name = dto.Name;
-            city.UpdatedAt = DateTime.Now;
-
-            var res = await _repository.UpdateAsync(id, city);
+            var res = await _repository.UpdateAsync(id, subject);
             return Ok(res);
         }
 
