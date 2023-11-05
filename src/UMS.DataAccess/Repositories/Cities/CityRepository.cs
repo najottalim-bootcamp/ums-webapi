@@ -9,7 +9,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = "INSERT INTO City(Name,CreatedAt) VAlUES(@Name,@CreatedAt);";
+                string query = "INSERT INTO City(Name, CreatedAt) VALUES(@Name, @CreatedAt);";
                 int result = await _connection.ExecuteAsync(query, model);
                 return result;
             }
@@ -132,7 +132,7 @@
             {
                 await _connection.OpenAsync();
 
-                string query = $"UPDATE City SET Name=@Name,UpdatedAt = @UpdatedAt WHERE id={Id};";
+                string query = $"UPDATE City SET Name=@Name, UpdatedAt = @UpdatedAt WHERE id={Id};";
                 var result = await _connection.ExecuteAsync(query, model);
 
                 return result;
