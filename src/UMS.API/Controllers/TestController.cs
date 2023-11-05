@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using UMS.DataAccess.Common.Paginations;
-using UMS.DataAccess.Dtos.Cities;
-using UMS.DataAccess.Dtos.Teachers;
-using UMS.DataAccess.Repositories.AcadPositions;
-using UMS.DataAccess.Repositories.Cities;
-using UMS.Domain.Entities.Locations;
+using UMS.DataAccess.Dtos.Education;
+using UMS.DataAccess.Repositories.Departments;
+using UMS.DataAccess.Repositories.Faculties;
+using UMS.Domain.Entities.EduModels;
 
 namespace UMS.API.Controllers
 {
@@ -13,19 +11,19 @@ namespace UMS.API.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        private readonly ICityRepository _repository;
+        private readonly IDepartmentRepository _repository;
 
-        public TestController(ICityRepository repository)
+        public TestController(IDepartmentRepository repository)
         {
             _repository = repository;
         }
 
         [HttpPost]
-        public async ValueTask<IActionResult> CreateAsync([FromForm] CityDto dto)
+        public async ValueTask<IActionResult> CreateAsync([FromForm] DepartmentDto dto)
         {
-            City city = new City(); 
+            Department city = new Department(); 
             city.Name = dto.Name;
-            city.CreatedAt = DateTime.Now;
+            city.FacultyID = dto.FacultyID;
 
             int result = await _repository.CreateAsync(city);
             return Ok(result);
@@ -46,12 +44,11 @@ namespace UMS.API.Controllers
         }
 
         [HttpPut]
-        public async ValueTask<IActionResult> UpdateAsync( long id, [FromForm] CityDto dto)
+        public async ValueTask<IActionResult> UpdateAsync( long id, [FromForm] DepartmentDto dto)
         {
-            City  city =  new City();
-
+            Department city = new Department();
             city.Name = dto.Name;
-            city.UpdatedAt  = DateTime.Now;
+            city.FacultyID = dto.FacultyID;
 
             var res = await _repository.UpdateAsync(id, city);
             return Ok(res);
