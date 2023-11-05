@@ -2,10 +2,16 @@
 using Microsoft.AspNetCore.Mvc;
 using UMS.DataAccess.Common.Paginations;
 using UMS.DataAccess.Dtos.Cities;
+using UMS.DataAccess.Dtos.Countries;
+using UMS.DataAccess.Dtos.PersonalDatas;
 using UMS.DataAccess.Dtos.Teachers;
 using UMS.DataAccess.Repositories.AcadPositions;
 using UMS.DataAccess.Repositories.Cities;
+using UMS.DataAccess.Repositories.Countries;
+using UMS.DataAccess.Repositories.PersonalDatas;
 using UMS.Domain.Entities.Locations;
+using UMS.Domain.Entities.People;
+
 
 namespace UMS.API.Controllers
 {
@@ -13,21 +19,29 @@ namespace UMS.API.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        private readonly ICityRepository _repository;
-
-        public TestController(ICityRepository repository)
+        private readonly IPersonalDataRepository _repository;
+                    
+        public TestController(IPersonalDataRepository repository)
         {
             _repository = repository;
         }
 
         [HttpPost]
-        public async ValueTask<IActionResult> CreateAsync([FromForm] CityDto dto)
+        public async ValueTask<IActionResult> CreateAsync([FromForm] PersonalDataDto dto)
         {
-            City city = new City(); 
-            city.Name = dto.Name;
-            city.CreatedAt = DateTime.Now;
+            PersonalData pd = new PersonalData(); 
+            pd.FirstName = dto.FirstName;
+            pd.LastName = dto.LastName;
+            pd.MiddleName = dto.MiddleName;
+            pd.CityId = dto.CityId;
+            pd.CountryId = dto.CountryId;
+            pd.Email = dto.Email;
+            pd.Gender = dto.Gender;
+            pd.PhoneNumber = dto.PhoneNumber;
+            pd.ImagePath = dto.ImagePath;
+            pd.CreatedAt = DateTime.Now;
 
-            int result = await _repository.CreateAsync(city);
+            int result = await _repository.CreateAsync(pd);
             return Ok(result);
         }
 
@@ -46,14 +60,21 @@ namespace UMS.API.Controllers
         }
 
         [HttpPut]
-        public async ValueTask<IActionResult> UpdateAsync( long id, [FromForm] CityDto dto)
+        public async ValueTask<IActionResult> UpdateAsync( long id, [FromForm] PersonalDataDto dto)
         {
-            City  city =  new City();
+            PersonalData pd = new PersonalData();
+            pd.FirstName = dto.FirstName;
+            pd.LastName = dto.LastName;
+            pd.MiddleName = dto.MiddleName;
+            pd.CityId = dto.CityId;
+            pd.CountryId = dto.CountryId;
+            pd.Email = dto.Email;
+            pd.Gender = dto.Gender;
+            pd.PhoneNumber = dto.PhoneNumber;
+            pd.ImagePath = dto.ImagePath;
+            pd.CreatedAt = DateTime.Now;
 
-            city.Name = dto.Name;
-            city.UpdatedAt  = DateTime.Now;
-
-            var res = await _repository.UpdateAsync(id, city);
+            var res = await _repository.UpdateAsync(id, pd);
             return Ok(res);
         }
 
