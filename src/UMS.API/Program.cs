@@ -14,11 +14,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICityRepository, CityRepository>();
 
-builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
-builder.Services.AddScoped<ISpecialtyEduFormRepository, SpecialtyEduFormRepository>();
-builder.Services.AddScoped<IScienDegreeRepository, ScienDegreeRepository>();
-builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
