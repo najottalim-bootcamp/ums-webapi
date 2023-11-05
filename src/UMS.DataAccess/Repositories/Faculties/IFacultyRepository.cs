@@ -1,7 +1,7 @@
 ﻿
 namespace UMS.DataAccess.Repositories.Faculties
 {
-	public interface IFacultyRepository:IBaseRepository<Faculty,FacultyDto>
+	public interface IFacultyRepository:IBaseRepository<Faculty>
 	{
 	}
 }
