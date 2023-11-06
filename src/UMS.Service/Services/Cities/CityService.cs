@@ -37,7 +37,7 @@ namespace UMS.Service.Cities
             return city;
         }
 
-        public async Task<bool> UpdateAsync(long conId, City dto)
+        public async Task<bool> UpdateAsync(long conId, CityDto dto)
         {
             City city = await _cityRepository.GetByIdAsync(conId);
             if (city is null) throw new CityNotFoundException();
