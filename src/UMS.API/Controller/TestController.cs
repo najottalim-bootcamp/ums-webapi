@@ -11,7 +11,7 @@ namespace UMS.API.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        private readonly IPersonalDataRepository _repository;
+        private readonly IPersonalDataRepository _repository;       
 
         public TestController(IPersonalDataRepository repository)
         {
