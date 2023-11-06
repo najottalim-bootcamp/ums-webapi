@@ -33,7 +33,7 @@ namespace UMS.API.Controller
         }
 
         [HttpGet("get")]
-        public async ValueTask<IActionResult> GetByIdAsync(int id)
+        public async ValueTask<IActionResult> GetByIdAsync(long id)
         {
             var city = await _personal.GetByIdAsync(id);
 
