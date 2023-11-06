@@ -13,4 +13,14 @@
     <ProjectReference Include="..\UMS.DataAccess\UMS.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Contracts\" />
+    <None Remove="Subjects\" />
+    <None Remove="Specialties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+    <Folder Include="Subjects\" />
+    <Folder Include="Specialties\" />
+  </ItemGroup>
 </Project>

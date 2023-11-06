@@ -1,4 +1,4 @@
-﻿using UMS.DataAccess.Repositories.AcadPositions;
+using UMS.DataAccess.Repositories.AcadPositions;
 using UMS.DataAccess.Repositories.Branchs;
 using UMS.DataAccess.Repositories.Cities;
 using UMS.DataAccess.Repositories.Departments;
