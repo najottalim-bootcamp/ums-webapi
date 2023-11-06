@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using UMS.Service.Dtos.Subjects;
-using UMS.Service.Subjects;
-
-namespace UMS.API.Controller
+﻿namespace UMS.API.Controller
 {
     [Route("api/[controller]/[action]")]
     public class SubjectController : ControllerBase
