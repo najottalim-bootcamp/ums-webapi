@@ -1,4 +1,12 @@
+using UMS.DataAccess.Repositories.AcadPositions;
+using UMS.DataAccess.Repositories.Branchs;
+using UMS.DataAccess.Repositories.Cities;
+using UMS.DataAccess.Repositories.Departments;
+using UMS.DataAccess.Repositories.Disciplines;
+using UMS.DataAccess.Repositories.Faculties;
+using UMS.DataAccess.Repositories.Universities;
 
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
