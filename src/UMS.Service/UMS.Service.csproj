@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -10,4 +10,14 @@
     <ProjectReference Include="..\UMS.DataAccess\UMS.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Contracts\" />
+    <None Remove="Subjects\" />
+    <None Remove="Specialties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+    <Folder Include="Subjects\" />
+    <Folder Include="Specialties\" />
+  </ItemGroup>
 </Project>
