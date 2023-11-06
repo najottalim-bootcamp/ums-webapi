@@ -1,10 +1,7 @@
-using UMS.DataAccess.Repositories.AcadPositions;
-using UMS.DataAccess.Repositories.Branchs;
 using UMS.DataAccess.Repositories.Cities;
-using UMS.DataAccess.Repositories.Departments;
-using UMS.DataAccess.Repositories.Disciplines;
-using UMS.DataAccess.Repositories.Faculties;
-using UMS.DataAccess.Repositories.Universities;
+using UMS.DataAccess.Repositories.Countries;
+using UMS.Service.Cities;
+using UMS.Service.Countries;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +11,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<ICityRepository, CityRepository>();
+builder.Services.AddScoped<ICityService, CityService>();
+
+builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+builder.Services.AddScoped<ICountryService, CountryService>();
 
 var app = builder.Build();
 

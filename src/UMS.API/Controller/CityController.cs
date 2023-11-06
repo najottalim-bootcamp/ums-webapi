@@ -1,34 +1,30 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using UMS.DataAccess.Dtos.Cities;
-using UMS.DataAccess.Repositories.Cities;
-using UMS.DataAccess.Repositories.PersonalDatas;
-using UMS.Domain.Entities.Locations;
+using UMS.Service.Cities;
 
 namespace UMS.API.Controller
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CityController : ControllerBase
     {
-        private readonly ICityRepository _personal;
+        private readonly ICityService _personal;
 
-        public CityController(ICityRepository personal)
+        public CityController(ICityService personal)
         {
             _personal = personal;
         }
 
-
+        [HttpPost]
         public async ValueTask<IActionResult> CreateAsync([FromForm] CityDto dto)
         {
-            City city = new City();
-            city.Name = dto.Name;
-            city.CreatedAt = DateTime.Now;
 
-            int result = await _personal.CreateAsync(city);
+
+            bool result = await _personal.CreateAsync(dto);
             return Ok(result);
         }
 
+        [HttpGet("getAll")]
         public async ValueTask<IActionResult> GetAllAsync()
         {
             var cities = await _personal.GetAllAsync();
@@ -36,22 +32,19 @@ namespace UMS.API.Controller
             return Ok(cities);
         }
 
+        [HttpGet("get")]
         public async ValueTask<IActionResult> GetByIdAsync(int id)
         {
             var city = await _personal.GetByIdAsync(id);
 
             return Ok(city);
         }
-
+        [HttpPut]
         public async ValueTask<IActionResult> UpdateAsync(long id, [FromForm] CityDto dto)
         {
-            City city = new City()
-            {
-                Name = dto.Name,
-                UpdatedAt = DateTime.Now,
-            };
 
-            var res = await _personal.UpdateAsync(id, city);
+
+            bool res = await _personal.UpdateAsync(id, dto);
             return Ok(res);
         }
 
