@@ -1,15 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using UMS.DataAccess.Common.Paginations;
-using UMS.DataAccess.Dtos.Cities;
-using UMS.DataAccess.Dtos.Countries;
 using UMS.DataAccess.Dtos.PersonalDatas;
-using UMS.DataAccess.Dtos.Teachers;
-using UMS.DataAccess.Repositories.AcadPositions;
-using UMS.DataAccess.Repositories.Cities;
-using UMS.DataAccess.Repositories.Countries;
 using UMS.DataAccess.Repositories.PersonalDatas;
-using UMS.Domain.Entities.Locations;
 using UMS.Domain.Entities.People;
 
 
