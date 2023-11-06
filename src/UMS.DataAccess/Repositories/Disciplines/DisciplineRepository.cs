@@ -1,7 +1,4 @@
-﻿using UMS.DataAccess.Dtos.Discipline;
-using UMS.Domain.Entities.EduModels;
-
-namespace UMS.DataAccess.Repositories.Disciplines
+﻿namespace UMS.DataAccess.Repositories.Disciplines
 {
     public class DisciplineRepository : BaseRepository, IDisciplineRepository
     {

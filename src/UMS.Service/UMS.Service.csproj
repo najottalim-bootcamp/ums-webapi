@@ -19,8 +19,8 @@
     <None Remove="Specialties\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Contracts\" />
-    <Folder Include="Subjects\" />
-    <Folder Include="Specialties\" />
+    <Folder Include="Services\Contracts\" />
+    <Folder Include="Services\Subjects\" />
+    <Folder Include="Services\Specialties\" />
   </ItemGroup>
 </Project>

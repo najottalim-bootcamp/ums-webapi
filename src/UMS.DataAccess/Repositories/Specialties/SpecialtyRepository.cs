@@ -1,5 +1,4 @@
-﻿using UMS.DataAccess.Dtos.Education;
-namespace UMS.DataAccess.Repositories.Specialties
+﻿namespace UMS.DataAccess.Repositories.Specialties
 {
     public class SpecialtyRepository : BaseRepository, ISpecialtyRepository
     {
