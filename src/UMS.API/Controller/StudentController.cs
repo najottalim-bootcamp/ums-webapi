@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using UMS.Service.Dtos.Students;
-using UMS.Service.Services.Students;
-
-namespace UMS.API.Controller
+﻿namespace UMS.API.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
