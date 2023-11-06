@@ -19,11 +19,13 @@
     <None Remove="Subjects\" />
     <None Remove="Specialties\" />
     <None Remove="ViewModels\Contracts\" />
+    <None Remove="ViewModels\Subjects\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\Contracts\" />
     <Folder Include="Services\Subjects\" />
     <Folder Include="Services\Specialties\" />
     <Folder Include="ViewModels\Contracts\" />
+    <Folder Include="ViewModels\Subjects\" />
   </ItemGroup>
 </Project>
