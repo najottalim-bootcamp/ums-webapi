@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using UMS.Service.Countries;
-using UMS.Service.Dtos.Countries;
-
-namespace UMS.API.Controller
+﻿namespace UMS.API.Controller
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
