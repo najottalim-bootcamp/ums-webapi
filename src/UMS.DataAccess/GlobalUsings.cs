@@ -1,21 +1,10 @@
-﻿global using UMS.Domain.Entities.Teacher;
-global using Dapper;
-global using UMS.DataAccess.Common.Paginations;
-global using UMS.DataAccess.Dtos.Teachers;
-global using UMS.DataAccess.Repositories.AcadPositions;
+﻿global using Dapper;
 global using System.Data.SqlClient;
-global using UMS.DataAccess.Dtos.EduForm;
+global using UMS.DataAccess.Common.Paginations;
 global using UMS.Domain.Entities.EduModels;
-global using UMS.DataAccess.Dtos.Countries;
 global using UMS.Domain.Entities.Locations;
-global using UMS.DataAccess.Dtos.Education;
-global using UMS.DataAccess.Dtos.Cities;
-global using UMS.DataAccess.Dtos.Contracts;
 global using UMS.Domain.Entities.Payments;
-global using UMS.DataAccess.Dtos.Students;
 global using UMS.Domain.Entities.Students;
-global using UMS.DataAccess.Dtos.Subjects;
-global using UMS.DataAccess.Dtos.University;
+global using UMS.Domain.Entities.Teacher;
 global using UMS.Domain.Entities.University;
-global using UMS.DataAccess.Dtos.Education;
 
