@@ -6,7 +6,7 @@ using UMS.Service.Branches;
 
 namespace UMS.API.Controller
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class BranchController : ControllerBase
     {
@@ -17,6 +17,7 @@ namespace UMS.API.Controller
             branch = _branch;    
         }
 
+        [HttpPost]
         public async ValueTask<IActionResult> CreateAsync([FromForm] BranchDto dto)
         {
             bool result = await branch.CreateAsync(dto);
@@ -24,26 +25,27 @@ namespace UMS.API.Controller
             return Ok(result);
         }
 
+        [HttpGet]
         public async ValueTask<IActionResult> GetAllAsync()
         {
             var result = await branch.GetAllAsync(); 
             
             return Ok(result);
         }
-
+        [HttpGet]
         public async ValueTask<IActionResult> GetByIdAsync(long Id)
         {
             var result = await branch.GetByIdAsync(Id);
             return Ok(result);
         }
-
+        [HttpPut]
         public async ValueTask<IActionResult> UpdateAsync(long Id,[FromForm]BranchDto dto)
         {
             bool result = await branch.UpdateAsync(Id, dto);
 
             return Ok(result);
         }
-
+        [HttpDelete]
         public async ValueTask<IActionResult> DeleteAsync(long Id)
         {
             bool res = await branch.DeleteAsync(Id); 

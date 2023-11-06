@@ -1,5 +1,7 @@
+using UMS.DataAccess.Repositories.Branchs;
 using UMS.DataAccess.Repositories.Cities;
 using UMS.DataAccess.Repositories.Countries;
+using UMS.Service.Branches;
 using UMS.Service.Cities;
 using UMS.Service.Countries;
 
@@ -17,6 +19,10 @@ builder.Services.AddScoped<ICityService, CityService>();
 
 builder.Services.AddScoped<ICountryRepository, CountryRepository>();
 builder.Services.AddScoped<ICountryService, CountryService>();
+
+
+builder.Services.AddScoped<IBranchRepository, BranchRepository>();
+builder.Services.AddScoped<IBranchService, BranchService>();
 
 var app = builder.Build();
 
