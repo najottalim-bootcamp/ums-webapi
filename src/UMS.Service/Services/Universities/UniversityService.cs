@@ -1,4 +1,7 @@
-﻿namespace UMS.Service.Services.Universities;
+﻿using UMS.DataAccess.Repositories.Universities;
+using UMS.Service.Dtos.University;
+
+namespace UMS.Service.Services.Universities;
 
 public class UniversityService : IUniversityService
 {
