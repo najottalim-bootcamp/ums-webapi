@@ -1,4 +1,6 @@
-﻿namespace UMS.Service.Departments
+﻿using UMS.Service.Dtos.Education;
+
+namespace UMS.Service.Departments
 {
     public class DepartmentService : IDepartmentService
     {
@@ -8,7 +10,7 @@
             repository = _repository;
         }
 
-        public async Task<bool> CreateAsync(DepartmentDto dto)
+        public async ValueTask<bool> CreateAsync(DepartmentDto dto)
         {
             Department department = new Department()
             {
@@ -19,7 +21,7 @@
             return result > 0;
         }
 
-        public async Task<bool> DeleteAsync(long id)
+        public async ValueTask<bool> DeleteAsync(long id)
         {
             Department res = await repository.GetByIdAsync(id);
             if (res is null)
@@ -30,13 +32,13 @@
             return result > 0;
         }
 
-        public async Task<IList<Department>> GetAllAsync()
+        public async ValueTask<IList<Department>> GetAllAsync()
         {
             IList<Department> result = await repository.GetAllAsync();
             return result;
         }
 
-        public async Task<Department> GetByIdAsync(long id)
+        public async ValueTask<Department> GetByIdAsync(long id)
         {
             Department result = await repository.GetByIdAsync(id);
             if (result is null)
@@ -46,7 +48,7 @@
             return result;
         }
 
-        public async Task<bool> UpdateAsync(long id, DepartmentDto dto)
+        public async ValueTask<bool> UpdateAsync(long id, DepartmentDto dto)
         {
             Department result = await repository.GetByIdAsync(id);
             if ( result is null)
