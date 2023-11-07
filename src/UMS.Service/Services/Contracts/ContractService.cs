@@ -47,20 +47,20 @@
             IList<Student> students = await _studentRepository.GetAllAsync();
 
             var combinedData = contracts
-                             .GroupJoin(faculties, contract => contract.FacultId, facultie => facultie.Id,
+                             .Join(faculties, contract => contract.FacultId, facultie => facultie.Id,
                              (contract, facultie) => new { contract, facultie })
                              .Join(students, cs => cs.contract.StudentId, 
                              student => student.Id, (cs, student) => new ContractViewModel()
                              {
-                                 //FacultId=cs.facultie,
+                                 FacultId=cs.facultie.Id,
                                  StudentId=student.Id,
                                  ContractPrice=cs.contract.Price,
                                  StudentCourse=student.Course,
                                  IsActive=student.IsActive,
                                  StudentEduType=student.EduType,
                                  StudentGroupNumber=student.GroupNumber,
-                                 //FacultyName=cs.facultie.Name,
-                                 //FacultyDescription=cs.facultie.Description
+                                 FacultyName=cs.facultie.Name,
+                                 FacultyDescription=cs.facultie.Description
                              }).ToList();
 
             return combinedData;
