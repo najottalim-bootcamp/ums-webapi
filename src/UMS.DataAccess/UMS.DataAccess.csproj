@@ -1,13 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>dd4641f7-02ac-4134-a81b-b4e802a93ba0</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\UMS.Domain\UMS.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Repositories\Universities\" />
+    <None Remove="Repositories\Branchs\" />
+  </ItemGroup>
+  <ItemGroup>
+
+    <Folder Include="Repositories\Universities\" />
+
+    <Folder Include="Repositories\Branchs\" />
+  </ItemGroup>
 </Project>
