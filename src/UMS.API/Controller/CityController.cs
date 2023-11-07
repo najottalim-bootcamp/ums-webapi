@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using UMS.Service.Cities;
-using UMS.Service.Dtos.Cities;
-
-namespace UMS.API.Controller
+﻿namespace UMS.API.Controller
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

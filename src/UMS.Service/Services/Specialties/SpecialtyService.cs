@@ -1,14 +1,20 @@
-﻿using UMS.Service.Dtos.Education;
+﻿using UMS.Domain.Entities.EduModels;
+using UMS.Service.Dtos.Education;
+using UMS.Service.ViewModels.Specialties;
+using UMS.Service.ViewModels.Subjects;
 
 namespace UMS.Service.Specialties
 {
 	public class SpecialtyService:ISpecialtyService
 	{
         private readonly ISpecialtyRepository _specialtyRepository;
+        private readonly IDepartmentRepository _departmentRepository;
 
-		public SpecialtyService(ISpecialtyRepository specialtyRepository)
+		public SpecialtyService(ISpecialtyRepository specialtyRepository,
+                                IDepartmentRepository departmentRepository)
 		{
             _specialtyRepository = specialtyRepository;
+            _departmentRepository = departmentRepository;
 		}
 
         public async ValueTask<bool> CreateAsync(SpecialtyDTO specialtyDto)
@@ -34,18 +40,35 @@ namespace UMS.Service.Specialties
             return result > 0;
         }
 
-        public async ValueTask<IList<Specialty>> GetAllAsync()
+        public async ValueTask<IList<SpecialtyViewModel>> GetAllAsync()
         {
             IList<Specialty> specialties = await _specialtyRepository.GetAllAsync();
-            return specialties;
+            IList<Department> departments = await _departmentRepository.GetAllAsync();
+
+            var combinedData = specialties
+                              .Join(departments, specialty => specialty.DepartmentId, department => department.Id,
+                              (specialty, department) => new SpecialtyViewModel()
+                              {
+                                    SpecialtyName=specialty.Name,
+                                    DepartmentName=department.Name
+                              }).ToList();
+
+            return combinedData;
         }
 
-        public async ValueTask<Specialty> GetByIdAsync(long id)
+        public async ValueTask<SpecialtyViewModel> GetByIdAsync(long id)
         {
             Specialty specialty = await _specialtyRepository.GetByIdAsync(id);
             if (specialty is null) throw new SpecialtyNotFoundException();
+            Department department = await _departmentRepository.GetByIdAsync(specialty.DepartmentId);
 
-            return specialty;
+            SpecialtyViewModel specialtyView = new SpecialtyViewModel()
+            {
+               SpecialtyName=specialty.Name,
+               DepartmentName=department.Name
+            };
+
+            return specialtyView;
         }
     }
     
