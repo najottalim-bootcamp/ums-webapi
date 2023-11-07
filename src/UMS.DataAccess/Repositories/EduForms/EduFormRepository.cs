@@ -1,7 +1,4 @@
-﻿using UMS.DataAccess.Dtos.EduForm;
-using UMS.Domain.Entities.EduModels;
-
-namespace UMS.DataAccess.Repositories.EduFormPositions
+﻿namespace UMS.DataAccess.Repositories.EduFormPositions
 {
     public class EduFormRepository : BaseRepository, IEduFormRepository
     {
