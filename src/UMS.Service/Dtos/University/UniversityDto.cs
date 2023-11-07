@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace UMS.Service.Dtos.University;
+﻿namespace UMS.Service.Dtos.University;
 
 public class UniversityDto
 {
