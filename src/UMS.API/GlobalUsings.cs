@@ -31,3 +31,4 @@ global using UMS.Service.Common.Paginations;
 global using UMS.Service.Dtos.Teachers;
 global using UMS.Service.Services.Teachers;
 global using UMS.Service.Dtos.Discipline;
+global using UMS.Service.Services.Universities;
