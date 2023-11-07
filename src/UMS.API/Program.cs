@@ -6,6 +6,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
 //builder.Services.AddScoped<IStudentRepository , StudentRepository>();
 //builder.Services.AddScoped<IStudentService , StudentService>();
 
@@ -26,6 +28,8 @@ builder.Services.AddScoped<ISpecialtyEduFormService, SpecialtyEduFormService>();
 
 builder.Services.AddScoped<IDisciplineRepository, DisciplineRepository>();
 builder.Services.AddScoped<IDisciplineService, DisciplineService>();
+
+
 
 var app = builder.Build();
 

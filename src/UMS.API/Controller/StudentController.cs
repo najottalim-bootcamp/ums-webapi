@@ -11,11 +11,6 @@
             _service = service;
         }
 
-        [HttpPost]
-        public async ValueTask<IActionResult> CreateAsync(StudentDto studentDto)
-        {
-            bool result = await _service.CreateAsync(studentDto);
-            return Ok(result);
-        }
+
     }
 }
