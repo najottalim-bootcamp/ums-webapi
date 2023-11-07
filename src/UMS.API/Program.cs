@@ -1,10 +1,14 @@
 using UMS.DataAccess.Repositories.Branchs;
 using UMS.DataAccess.Repositories.Cities;
 using UMS.DataAccess.Repositories.Countries;
+using UMS.DataAccess.Repositories.Departments;
+using UMS.DataAccess.Repositories.Faculties;
 using UMS.DataAccess.Repositories.Students;
 using UMS.Service.Branches;
 using UMS.Service.Cities;
 using UMS.Service.Countries;
+using UMS.Service.Departments;
+using UMS.Service.Services.Faculties;
 using UMS.Service.Services.Students;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +33,12 @@ builder.Services.AddScoped<ICountryService , CountryService>();
 
 builder.Services.AddScoped<IBranchRepository , BranchRepository>();
 builder.Services.AddScoped<IBranchService , BranchService>();
+
+builder.Services.AddScoped<IFacultyRepository , FacultyRepository>();
+builder.Services.AddScoped<FacultyService , FacultyService>();
+
+builder.Services.AddScoped<IDepartmentRepository , DepartmentRepository>();
+builder.Services.AddScoped<IDepartmentService , DepartmentService>();
 
 var app = builder.Build();
 
