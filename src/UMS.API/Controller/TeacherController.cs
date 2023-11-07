@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using UMS.Service.Dtos.Teachers;
-using UMS.Service.Services.Teachers;
-
-namespace UMS.API.Controller
+﻿namespace UMS.API.Controller
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -13,41 +8,41 @@ namespace UMS.API.Controller
 
         public TeacherController(ITeacherService teacher)
         {
-            _teacher = teacher; 
+            _teacher = teacher;
         }
-        
+
         [HttpPost]
         public async ValueTask<IActionResult> CreateAsync(TeacherDTO dto)
         {
-            var result = await teacher.CreateAsync(dto);
+            var result = await _teacher.CreateAsync(dto);
             return Ok(result);
         }
 
         [HttpGet]
         public async ValueTask<IActionResult> GetAllAsync()
         {
-            var teachers = await teacher.GetAllAsync();
+            var teachers = await _teacher.GetAllAsync();
             return Ok(teachers);
         }
 
         [HttpGet]
         public async ValueTask<IActionResult> GetByIdAsync(long Id)
         {
-            var result = await teacher.GetByIdAsync(Id);
+            var result = await _teacher.GetByIdAsync(Id);
             return Ok(result);
         }
 
         [HttpPut]
-        public async ValueTask<IActionResult> UpdateAsync(long Id ,[FromForm] TeacherDTO dto)
+        public async ValueTask<IActionResult> UpdateAsync(long Id, [FromForm] TeacherDTO dto)
         {
-            var result = teacher.UpdateAsync(Id, dto); 
+            var result = _teacher.UpdateAsync(Id, dto);
             return Ok(result);
         }
 
         [HttpDelete]
         public async ValueTask<IActionResult> DeleteAsync(long Id)
         {
-            var result = teacher.DeleteAsync(Id);
+            var result = _teacher.DeleteAsync(Id);
             return Ok(result);
         }
     }
