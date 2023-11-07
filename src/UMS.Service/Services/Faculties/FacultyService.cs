@@ -1,4 +1,6 @@
-﻿namespace UMS.Service.Services.Faculties;﻿
+﻿using UMS.Service.Dtos.Education;
+
+namespace UMS.Service.Services.Faculties;﻿
 
 public class FacultyService : IFacultyService
 {
@@ -7,7 +9,7 @@ public class FacultyService : IFacultyService
     {
         _repository = facultyrepository;
     }
-    public async Task<bool> CreateAsync(FacultyDto dto)
+    public async ValueTask<bool> CreateAsync(FacultyDto dto)
     {
         Faculty faculty = new Faculty()
         {
@@ -19,7 +21,7 @@ public class FacultyService : IFacultyService
         return result > 0;
     }
 
-    public async Task<bool> DeleteAsync(long id)
+    public async ValueTask<bool> DeleteAsync(long id)
     {
         Faculty res = await _repository.GetByIdAsync(id);
         if (res == null)
@@ -30,13 +32,13 @@ public class FacultyService : IFacultyService
         return result > 0;
     }
 
-    public async Task<IList<Faculty>> GetAllAsync()
+    public async ValueTask<IList<Faculty>> GetAllAsync()
     {
         IList<Faculty> result = await _repository.GetAllAsync();
         return result;
     }
 
-    public async Task<Faculty> GetByIdAsync(long id)
+    public async ValueTask<Faculty> GetByIdAsync(long id)
     {
         Faculty result = await _repository.GetByIdAsync(id);
         if (result == null)
@@ -46,7 +48,7 @@ public class FacultyService : IFacultyService
         return result;
     }
 
-    public async Task<bool> UpdateAsync(long facId, FacultyDto dto)
+    public async ValueTask<bool> UpdateAsync(long facId, FacultyDto dto)
     {
         Faculty result = await _repository.GetByIdAsync(facId);
         if (result == null)
