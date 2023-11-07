@@ -41,7 +41,7 @@ global using UMS.Service.Dtos.Subjects;
 global using UMS.Service.ViewModels.Subjects;
 global using System.ComponentModel.DataAnnotations;
 global using Microsoft.AspNetCore.Http;
-global using UMS.Service.Services.CustomAttributes;
 global using static UMS.Domain.Enums.GenderEnum;
 global using static UMS.Domain.Enums.PositionEnum;
 global using static UMS.Domain.Enums.EduFormEnum;
+global using UMS.Service.CustomAttributes;
