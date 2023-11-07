@@ -25,3 +25,6 @@ global using UMS.DataAccess.Repositories.Departments;
 global using UMS.DataAccess.Repositories.Faculties;
 global using UMS.Service.Departments;
 global using UMS.Service.Services.Faculties;
+global using UMS.DataAccess.Repositories.PersonalDatas;
+global using UMS.Service.Common.Files;
+global using UMS.Service.Common.Paginations;
