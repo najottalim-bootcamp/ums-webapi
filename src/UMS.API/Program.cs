@@ -1,3 +1,25 @@
+using UMS.DataAccess.Repositories.AcadPositions;
+using UMS.DataAccess.Repositories.Branchs;
+using UMS.DataAccess.Repositories.Cities;
+using UMS.DataAccess.Repositories.Contracts;
+using UMS.DataAccess.Repositories.Countries;
+using UMS.DataAccess.Repositories.Departments;
+using UMS.DataAccess.Repositories.Disciplines;
+using UMS.DataAccess.Repositories.Faculties;
+using UMS.DataAccess.Repositories.PersonalDatas;
+using UMS.DataAccess.Repositories.ScienDegrees;
+using UMS.DataAccess.Repositories.Specialties;
+using UMS.DataAccess.Repositories.SpecialtyEduForms;
+using UMS.DataAccess.Repositories.Students;
+using UMS.DataAccess.Repositories.Subjects;
+using UMS.DataAccess.Repositories.Teachers;
+using UMS.Service.Common.Files;
+using UMS.Service.Common.Paginations;
+using UMS.Service.Departments;
+using UMS.Service.Disciplines;
+using UMS.Service.Services.Faculties;
+using UMS.Service.SpecialtyEduForms;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -31,11 +53,25 @@ builder.Services.AddScoped<ISpecialtyEduFormService, SpecialtyEduFormService>();
 builder.Services.AddScoped<IDisciplineRepository, DisciplineRepository>();
 builder.Services.AddScoped<IDisciplineService, DisciplineService>();
 
-builder.Services.AddScoped<IFacultyRepository , FacultyRepository>();
-builder.Services.AddScoped<FacultyService , FacultyService>();
+builder.Services.AddScoped<IFacultyRepository, FacultyRepository>();
+builder.Services.AddScoped<FacultyService, FacultyService>();
+
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+
+builder.Services.AddScoped<ITeacherRepository , TeacherRepository>();
+builder.Services.AddScoped<ITeacherService, TeacherService>();
 
 builder.Services.AddScoped<IDepartmentRepository , DepartmentRepository>();
-builder.Services.AddScoped<IDepartmentService , DepartmentService>();
+builder.Services.AddScoped<IAcadPositionRepository , AcadPositionRepository>();
+builder.Services.AddScoped<IScienDegreeRepository, ScienDegreeRepository>();
+
+builder.Services.AddScoped<IContractRepository, ContractRepository>();
+builder.Services.AddScoped<IContractService, ContractService>();
+
+builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
+builder.Services.AddScoped<ISubjectService, SubjectService>();
+builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
 
 var app = builder.Build();
 

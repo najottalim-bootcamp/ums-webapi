@@ -1,4 +1,6 @@
-﻿namespace UMS.Service.Services.Universities;
+﻿using UMS.Service.Dtos.University;
+
+namespace UMS.Service.Services.Universities;
 
 public interface IUniversityService
 {

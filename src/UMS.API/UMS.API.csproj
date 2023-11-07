@@ -15,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\media\images\NewFolder\" />
+    <Folder Include="wwwroot\media\images\" />
+    <Folder Include="wwwroot\media\avatars\" />
   </ItemGroup>
 
 </Project>
