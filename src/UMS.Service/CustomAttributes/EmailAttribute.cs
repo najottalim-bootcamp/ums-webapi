@@ -1,4 +1,4 @@
-﻿namespace UMS.Service.Services.CustomAttributes
+﻿namespace UMS.Service.CustomAttributes
 {
     [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
     public class EmailAttribute : ValidationAttribute
