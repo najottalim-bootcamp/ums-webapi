@@ -5,19 +5,29 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	
   <ItemGroup>
     <ProjectReference Include="..\UMS.DataAccess\UMS.DataAccess.csproj" />
+    <ProjectReference Include="..\UMS.Domain\UMS.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Contracts\" />
     <None Remove="Subjects\" />
     <None Remove="Specialties\" />
+    <None Remove="ViewModels\Contracts\" />
+    <None Remove="ViewModels\Subjects\" />
+    <None Remove="ViewModels\Specialties\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Contracts\" />
-    <Folder Include="Subjects\" />
-    <Folder Include="Specialties\" />
+    <Folder Include="Services\Contracts\" />
+    <Folder Include="Services\Subjects\" />
+    <Folder Include="Services\Specialties\" />
+    <Folder Include="ViewModels\Contracts\" />
+    <Folder Include="ViewModels\Subjects\" />
+    <Folder Include="ViewModels\Specialties\" />
   </ItemGroup>
 </Project>
