@@ -20,6 +20,7 @@
     <None Remove="Specialties\" />
     <None Remove="ViewModels\Contracts\" />
     <None Remove="ViewModels\Subjects\" />
+    <None Remove="ViewModels\Specialties\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\Contracts\" />
@@ -27,5 +28,6 @@
     <Folder Include="Services\Specialties\" />
     <Folder Include="ViewModels\Contracts\" />
     <Folder Include="ViewModels\Subjects\" />
+    <Folder Include="ViewModels\Specialties\" />
   </ItemGroup>
 </Project>
