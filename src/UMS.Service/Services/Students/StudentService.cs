@@ -1,12 +1,4 @@
-﻿using UMS.DataAccess.Repositories.PersonalDatas;
-using UMS.Domain.Entities.People;
-using UMS.Domain.Exceptions.Images;
-using UMS.Domain.Exceptions.Students;
-using UMS.Domain.Exceptions.Users;
-using UMS.Service.Dtos.Students;
-using UMS.Service.ViewModels.Students;
-
-namespace UMS.Service.Services.Students;
+﻿namespace UMS.Service.Services.Students;
 
 public class StudentService : IStudentService
 {

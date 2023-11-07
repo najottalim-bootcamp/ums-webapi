@@ -1,9 +1,4 @@
-﻿using UMS.Domain.Entities.People;
-using UMS.Service.Dtos.Contracts;
-using UMS.Service.ViewModels.Contracts;
-using UMS.Service.ViewModels.Students;
-
-namespace UMS.Service.Contracts
+﻿namespace UMS.Service.Contracts
 {
 
     public class ContractService : IContractService

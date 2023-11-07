@@ -1,9 +1,4 @@
-﻿using UMS.Domain.Entities.Students;
-using UMS.Service.Dtos.Subjects;
-using UMS.Service.ViewModels.Students;
-using UMS.Service.ViewModels.Subjects;
-
-namespace UMS.Service.Subjects
+﻿namespace UMS.Service.Subjects
 {
     public class SubjectService : ISubjectService
     {

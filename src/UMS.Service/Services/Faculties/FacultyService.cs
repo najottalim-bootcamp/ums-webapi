@@ -1,8 +1,4 @@
-﻿using UMS.Service.Dtos.Education;
-
-namespace UMS.Service.Services.Faculties;
-﻿using UMS.DataAccess.Repositories.Faculties;
-using UMS.Service.Faculties;
+﻿namespace UMS.Service.Services.Faculties;﻿
 
 public class FacultyService : IFacultyService
 {

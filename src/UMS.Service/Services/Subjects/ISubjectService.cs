@@ -1,7 +1,4 @@
-﻿using UMS.Service.Dtos.Subjects;
-using UMS.Service.ViewModels.Subjects;
-
-namespace UMS.Service.Subjects
+﻿namespace UMS.Service.Subjects
 {
 	public interface ISubjectService
 	{
