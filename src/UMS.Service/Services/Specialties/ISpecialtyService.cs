@@ -1,4 +1,5 @@
 ﻿using UMS.Service.Dtos.Education;
+using UMS.Service.ViewModels.Specialties;
 
 namespace UMS.Service.Specialties
 {
@@ -6,8 +7,8 @@ namespace UMS.Service.Specialties
 	{
         public ValueTask<bool> CreateAsync(SpecialtyDTO specialtyDto);
         public ValueTask<bool> DeleteAsync(long id);
-        public ValueTask<Specialty> GetByIdAsync(long id);
-        public ValueTask<IList<Specialty>> GetAllAsync();
+        public ValueTask<SpecialtyViewModel> GetByIdAsync(long id);
+        public ValueTask<IList<SpecialtyViewModel>> GetAllAsync();
     }
 }
 

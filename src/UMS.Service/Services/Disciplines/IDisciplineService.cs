@@ -1,6 +1,4 @@
-﻿using UMS.Service.Dtos.Discipline;
-
-namespace UMS.Service.Disciplines
+﻿namespace UMS.Service.Disciplines
 {
     public interface IDisciplineService
     {

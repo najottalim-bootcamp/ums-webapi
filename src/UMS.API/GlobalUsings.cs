@@ -1,0 +1,15 @@
+﻿global using Microsoft.AspNetCore.Mvc;
+global using UMS.Service.Branches;
+global using UMS.Service.Dtos.University;
+global using UMS.Service.Cities;
+global using UMS.Service.Dtos.Cities;
+global using UMS.Service.Contracts;
+global using UMS.Service.Dtos.Contracts;
+global using UMS.Service.Countries;
+global using UMS.Service.Dtos.Education;
+global using UMS.Service.Specialties;
+global using UMS.Service.Dtos.Countries;
+global using UMS.Service.Dtos.Students;
+global using UMS.Service.Services.Students;
+global using UMS.Service.Dtos.Subjects;
+global using UMS.Service.Subjects;

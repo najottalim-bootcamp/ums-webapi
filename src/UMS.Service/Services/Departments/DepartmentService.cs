@@ -1,6 +1,4 @@
-﻿using UMS.Service.Dtos.Education;
-
-namespace UMS.Service.Departments
+﻿namespace UMS.Service.Departments
 {
     public class DepartmentService : IDepartmentService
     {
