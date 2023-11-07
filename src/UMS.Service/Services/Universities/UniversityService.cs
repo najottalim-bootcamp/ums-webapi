@@ -19,20 +19,52 @@ public class UniversityService : IUniversityService
     public async ValueTask<bool> CreateAsync(UniversityDto dto)
     {
         string imagePath = await _fileService.UploadImageAsync(dto.ImagePath);
+
+        University university = new University()
+        {
+            Name = dto.Name,
+            Description = dto.Description,
+            ImagePath = imagePath,
+        };
+
+        int result = await _universityRepository.CreateAsync(university);
+        return result > 0;
     }
 
-    public ValueTask<IList<University>> GetAllAsync()
+    public async ValueTask<IList<University>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        IList<University> universities = await _universityRepository.GetAllAsync();
+        return universities;
     }
 
-    public ValueTask<University> GetByIdAsync(long id)
+    public async ValueTask<University> GetByIdAsync(long id)
     {
-        throw new NotImplementedException();
+        University university = await _universityRepository.GetByIdAsync(id);
+        if(university is null) throw new UniversityNotFoundException();
+
+        return university;
     }
 
-    public ValueTask<bool> UpdateAsync(long id, UniversityDto dto)
+    public async ValueTask<bool> UpdateAsync(long id, UniversityDto dto)
     {
-        throw new NotImplementedException();
+        University university = await _universityRepository.GetByIdAsync(id);
+        if (university is null) throw new UniversityNotFoundException();
+
+        if (dto.ImagePath is not null)
+        {
+            var image = await _fileService.DeleteAvatarAsync(university.ImagePath);
+            if (image == false) throw new ImageNotFoundException();
+
+            string newImagePath = await _fileService.UploadAvatarAsync(dto.ImagePath);
+
+            university.ImagePath = newImagePath;
+        }
+
+        university.Name = dto.Name;
+        university.Description = dto.Description;
+
+        int result = await _universityRepository.UpdateAsync(university.Id, university);
+
+        return result > 0;
     }
 }
