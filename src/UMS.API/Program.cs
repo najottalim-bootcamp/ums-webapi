@@ -1,12 +1,3 @@
-using UMS.DataAccess.Repositories.Branchs;
-using UMS.DataAccess.Repositories.Cities;
-using UMS.DataAccess.Repositories.Countries;
-using UMS.DataAccess.Repositories.Students;
-using UMS.Service.Branches;
-using UMS.Service.Cities;
-using UMS.Service.Countries;
-using UMS.Service.Services.Students;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,16 +10,22 @@ builder.Services.AddSwaggerGen();
 //builder.Services.AddScoped<IStudentService , StudentService>();
 
 
-builder.Services.AddScoped<ICityRepository , CityRepository>();
-builder.Services.AddScoped<ICityService , CityService>();
+builder.Services.AddScoped<ICityRepository, CityRepository>();
+builder.Services.AddScoped<ICityService, CityService>();
 
 
-builder.Services.AddScoped<ICountryRepository , CountryRepository>();
-builder.Services.AddScoped<ICountryService , CountryService>();
+builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+builder.Services.AddScoped<ICountryService, CountryService>();
 
 
-builder.Services.AddScoped<IBranchRepository , BranchRepository>();
-builder.Services.AddScoped<IBranchService , BranchService>();
+builder.Services.AddScoped<IBranchRepository, BranchRepository>();
+builder.Services.AddScoped<IBranchService, BranchService>();
+
+builder.Services.AddScoped<ISpecialtyEduFormRepository, SpecialtyEduFormRepository>();
+builder.Services.AddScoped<ISpecialtyEduFormService, SpecialtyEduFormService>();
+
+builder.Services.AddScoped<IDisciplineRepository, DisciplineRepository>();
+builder.Services.AddScoped<IDisciplineService, DisciplineService>();
 
 var app = builder.Build();
 
