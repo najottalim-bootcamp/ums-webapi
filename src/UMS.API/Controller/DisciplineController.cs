@@ -1,6 +1,4 @@
-﻿using UMS.Service.Dtos.Discipline;
-
-namespace UMS.API.Controller
+﻿namespace UMS.API.Controller
 {
     [Route("api/[controller]")]
     [ApiController]

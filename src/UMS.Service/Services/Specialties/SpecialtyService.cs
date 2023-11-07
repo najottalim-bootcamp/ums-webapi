@@ -1,11 +1,6 @@
-﻿using UMS.Domain.Entities.EduModels;
-using UMS.Service.Dtos.Education;
-using UMS.Service.ViewModels.Specialties;
-using UMS.Service.ViewModels.Subjects;
-
-namespace UMS.Service.Specialties
+﻿namespace UMS.Service.Specialties
 {
-	public class SpecialtyService:ISpecialtyService
+    public class SpecialtyService:ISpecialtyService
 	{
         private readonly ISpecialtyRepository _specialtyRepository;
         private readonly IDepartmentRepository _departmentRepository;
