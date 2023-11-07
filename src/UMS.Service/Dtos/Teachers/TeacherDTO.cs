@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using static UMS.Domain.Enums.GenderEnum;
-
-namespace UMS.Service.Dtos.Teachers
+﻿namespace UMS.Service.Dtos.Teachers
 {
     public class TeacherDTO
     {
@@ -14,8 +11,10 @@ namespace UMS.Service.Dtos.Teachers
         public string LastName { get; set; }
         public long CityId { get; set; }
         public long CountryId { get; set; }
+        [Email]
         public string Email { get; set; }
         public Gender Gender { get; set; }
+        [PhoneNumber]
         public string PhoneNumber { get; set; }
         public IFormFile UserAvatar { get; set; } = default!;
     }
