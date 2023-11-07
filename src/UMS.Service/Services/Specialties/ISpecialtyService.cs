@@ -1,7 +1,4 @@
-﻿using UMS.Service.Dtos.Education;
-using UMS.Service.ViewModels.Specialties;
-
-namespace UMS.Service.Specialties
+﻿namespace UMS.Service.Specialties
 {
 	public interface ISpecialtyService
 	{

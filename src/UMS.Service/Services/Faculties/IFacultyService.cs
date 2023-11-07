@@ -1,5 +1,4 @@
-﻿using UMS.Service.Dtos.Education;
-
+﻿
 namespace UMS.Service.Faculties
 {
     public interface IFacultyService
