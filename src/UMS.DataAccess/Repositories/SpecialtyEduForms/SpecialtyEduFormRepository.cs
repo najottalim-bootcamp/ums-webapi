@@ -125,9 +125,25 @@
             }
         }
 
-        public ValueTask<int> UpdateAsync(long Id, SpecialtyEduForm model)
+        public async ValueTask<int> UpdateAsync(long Id, SpecialtyEduForm model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _connection.OpenAsync();
+
+                string query = $"UPDATE SpecialtyEduForm SET EduFormId=@EduFormId,  SpecialtyId = @SpecialtyId WHERE id = {Id};";
+                var result = await _connection.ExecuteAsync(query, model);
+
+                return result;
+            }
+            catch
+            {
+                return 0;
+            }
+            finally
+            {
+                await _connection.CloseAsync();
+            }
         }
     }
 }

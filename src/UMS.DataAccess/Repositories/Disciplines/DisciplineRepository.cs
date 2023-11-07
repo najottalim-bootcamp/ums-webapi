@@ -132,8 +132,8 @@
             {
                 await _connection.OpenAsync();
 
-                string query = $"UPDATE Discipline SET Name = @Name,DepartmentId = @DepartmentId,TeacherId = @TeacherId,LectureHours = @LectureHours," +
-                    $"PracticeHours = @PracticeHours, Updated_At  = @UpdatedAt WHERE id={Id};";
+                string query = @$"UPDATE Discipline SET Name = @Name,DepartmentId = @DepartmentId,TeacherId = @TeacherId,LectureHours = @LectureHours,
+                                                PracticeHours = @PracticeHours WHERE id={Id};";
                 var result = await _connection.ExecuteAsync(query, model);
 
                 return result;
