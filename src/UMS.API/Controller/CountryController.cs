@@ -10,10 +10,10 @@
         {
             repository = _repository;
         }
+
         [HttpPost]
         public async ValueTask<IActionResult> CreateAsync([FromForm] CountryDto dto)
         {
-
             bool result = await repository.CreateAsync(dto);
             return Ok(result);
         }
@@ -22,7 +22,6 @@
         public async ValueTask<IActionResult> GetAllAsync()
         {
             var countries = await repository.GetAllAsync();
-
             return Ok(countries);
         }
 
@@ -30,7 +29,6 @@
         public async ValueTask<IActionResult> GetByIdAsync(long id)
         {
             var country = await repository.GetByIdAsync(id);
-
             return Ok(country);
         }
         [HttpPatch]
@@ -39,7 +37,5 @@
             var res = await repository.UpdateAsync(id, dto);
             return Ok(res);
         }
-
-
     }
 }

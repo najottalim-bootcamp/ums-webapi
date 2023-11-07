@@ -14,8 +14,6 @@
         [HttpPost]
         public async ValueTask<IActionResult> CreateAsync([FromForm] CityDto dto)
         {
-
-
             bool result = await _personal.CreateAsync(dto);
             return Ok(result);
         }
@@ -24,7 +22,6 @@
         public async ValueTask<IActionResult> GetAllAsync()
         {
             var cities = await _personal.GetAllAsync();
-
             return Ok(cities);
         }
 
@@ -32,18 +29,13 @@
         public async ValueTask<IActionResult> GetByIdAsync(long id)
         {
             var city = await _personal.GetByIdAsync(id);
-
             return Ok(city);
         }
         [HttpPut]
         public async ValueTask<IActionResult> UpdateAsync(long id, [FromForm] CityDto dto)
         {
-
-
             bool res = await _personal.UpdateAsync(id, dto);
             return Ok(res);
         }
-
-
     }
 }

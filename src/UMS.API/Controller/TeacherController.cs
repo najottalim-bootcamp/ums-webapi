@@ -12,7 +12,7 @@
         }
 
         [HttpPost]
-        public async ValueTask<IActionResult> CreateAsync(TeacherDTO dto)
+        public async ValueTask<IActionResult> CreateAsync([FromForm] TeacherDTO dto)
         {
             var result = await _teacher.CreateAsync(dto);
             return Ok(result);

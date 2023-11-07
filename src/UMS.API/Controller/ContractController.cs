@@ -45,7 +45,6 @@
             bool result = await _contractService.DeleteAsync(id);
             return Ok(result);
         }
-
     }
 }
 
