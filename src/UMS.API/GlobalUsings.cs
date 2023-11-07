@@ -20,3 +20,4 @@ global using UMS.DataAccess.Repositories.Disciplines;
 global using UMS.DataAccess.Repositories.SpecialtyEduForms;
 global using UMS.Service.Disciplines;
 global using UMS.Service.SpecialtyEduForms;
+global using UMS.DataAccess.Repositories.Students;
