@@ -1,11 +1,13 @@
-﻿namespace UMS.Service.Departments
+﻿using UMS.Service.Dtos.Education;
+
+namespace UMS.Service.Departments
 {
     public interface IDepartmentService
     {
-        public Task<bool> CreateAsync(DepartmentDto dto);
-        public Task<IList<Department>> GetAllAsync();
-        public Task<Department> GetByIdAsync(long id);
-        public Task<bool> UpdateAsync(long id, DepartmentDto department);
-        public Task<bool> DeleteAsync(long id);
+        public ValueTask<bool> CreateAsync(DepartmentDto dto);
+        public ValueTask<IList<Department>> GetAllAsync();
+        public ValueTask<Department> GetByIdAsync(long id);
+        public ValueTask<bool> UpdateAsync(long id, DepartmentDto department);
+        public ValueTask<bool> DeleteAsync(long id);
     }
 }

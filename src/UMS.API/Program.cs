@@ -1,3 +1,4 @@
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -26,6 +27,12 @@ builder.Services.AddScoped<ISpecialtyEduFormService, SpecialtyEduFormService>();
 
 builder.Services.AddScoped<IDisciplineRepository, DisciplineRepository>();
 builder.Services.AddScoped<IDisciplineService, DisciplineService>();
+
+builder.Services.AddScoped<IFacultyRepository , FacultyRepository>();
+builder.Services.AddScoped<FacultyService , FacultyService>();
+
+builder.Services.AddScoped<IDepartmentRepository , DepartmentRepository>();
+builder.Services.AddScoped<IDepartmentService , DepartmentService>();
 
 var app = builder.Build();
 
