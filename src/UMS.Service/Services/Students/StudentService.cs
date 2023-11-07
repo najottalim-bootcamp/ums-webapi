@@ -47,7 +47,7 @@ public class StudentService : IStudentService
 
         Student student = new Student()
         {
-            PersonalDataId = personalData.Id,
+            PersonalDataId = dto.PersonalDataId,
             Course = dto.Course,
             SpecialtyEduFormId = dto.SpecialtyEduFormId,
             IsActive = dto.IsActive,

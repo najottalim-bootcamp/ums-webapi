@@ -1,6 +1,4 @@
-﻿using UMS.Service.Dtos.Teachers;
-using UMS.Service.Dtos.University;
-using UMS.Service.ViewModels.Teachers;
+﻿using UMS.Service.Dtos.University;
 
 namespace UMS.Service.Services.Universities;
 

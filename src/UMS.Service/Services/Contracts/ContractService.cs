@@ -49,7 +49,8 @@
             var combinedData = contracts
                              .Join(faculties, contract => contract.FacultId, facultie => facultie.Id,
                              (contract, facultie) => new { contract, facultie })
-                             .Join(students, cs => cs.contract.StudentId, student => student.Id, (cs, student) => new ContractViewModel()
+                             .Join(students, cs => cs.contract.StudentId, 
+                             student => student.Id, (cs, student) => new ContractViewModel()
                              {
                                  FacultId=cs.facultie.Id,
                                  StudentId=student.Id,

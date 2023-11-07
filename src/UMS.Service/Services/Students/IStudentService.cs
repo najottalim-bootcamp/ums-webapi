@@ -1,7 +1,4 @@
-﻿using UMS.Service.Dtos.Students;
-using UMS.Service.ViewModels.Students;
-
-namespace UMS.Service.Services.Students;
+﻿namespace UMS.Service.Services.Students;
 
 public interface IStudentService
 {

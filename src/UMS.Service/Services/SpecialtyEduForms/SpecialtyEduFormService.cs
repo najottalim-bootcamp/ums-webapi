@@ -1,4 +1,6 @@
-﻿namespace UMS.Service.SpecialtyEduForms
+using UMS.Service.Dtos.Education;
+
+namespace UMS.Service.SpecialtyEduForms
 {
     public class SpecialtyEduFormService : ISpecialtyEduFormService
     {
