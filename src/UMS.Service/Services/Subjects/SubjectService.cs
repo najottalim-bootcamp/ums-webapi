@@ -1,14 +1,20 @@
-﻿using UMS.Service.Dtos.Subjects;
+﻿using UMS.Domain.Entities.Students;
+using UMS.Service.Dtos.Subjects;
+using UMS.Service.ViewModels.Students;
+using UMS.Service.ViewModels.Subjects;
 
 namespace UMS.Service.Subjects
 {
     public class SubjectService : ISubjectService
     {
         private readonly ISubjectRepository _subjectRepository;
+        private readonly ISpecialtyRepository _specialtyRepository;
 
-        public SubjectService(ISubjectRepository subjectRepository)
+        public SubjectService(ISubjectRepository subjectRepository,
+                              ISpecialtyRepository specialtyRepository)
         {
             _subjectRepository = subjectRepository;
+            _specialtyRepository = specialtyRepository;
         }
 
         public async ValueTask<bool> CreateAsync(SubjectDto subjectDto)
@@ -34,18 +40,37 @@ namespace UMS.Service.Subjects
             return result > 0;
         }
 
-        public async ValueTask<IList<Subject>> GetAllAsync()
+        public async ValueTask<IList<SubjectViewModel>> GetAllAsync()
         {
             IList<Subject> subjects = await _subjectRepository.GetAllAsync();
-            return subjects;
+            IList<Specialty> specialties = await _specialtyRepository.GetAllAsync();
+
+            var combinedData= subjects
+                              .Join(specialties,subject=>subject.SpecialtyId, specialtie=>specialtie.Id,
+                              (subject, specialtie) =>new SubjectViewModel()
+                              {
+                                SpecialtyId=specialtie.Id,
+                                SubjectName=subject.Name,
+                                SpecialtyName=specialtie.Name
+                              }).ToList();
+
+            return combinedData;
         }
 
-        public async ValueTask<Subject> GetByIdAsync(long id)
+        public async ValueTask<SubjectViewModel> GetByIdAsync(long id)
         {
             Subject subject = await _subjectRepository.GetByIdAsync(id);
             if (subject is null) throw new SubjectNotFoundException();
+            Specialty specialty = await _specialtyRepository.GetByIdAsync(subject.SpecialtyId);
 
-            return subject;
+            SubjectViewModel subjectView = new SubjectViewModel()
+            {
+               SpecialtyId=specialty.Id,
+               SubjectName=subject.Name,
+               SpecialtyName=specialty.Name,
+            };
+
+            return subjectView;
         }
 
         public async ValueTask<bool> UpdateAsync(long id, SubjectDto subjectDto)
