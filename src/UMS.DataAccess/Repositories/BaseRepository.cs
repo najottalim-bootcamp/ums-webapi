@@ -6,6 +6,6 @@ public class BaseRepository
     public BaseRepository()
     {
         Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
-        this._connection = new SqlConnection("Server = DESKTOP-K36HGB0; Database = UMSDB; Trusted_Connection=True;");
+        this._connection = new SqlConnection("Server = (localdb)\\MSSQLLocalDB; Database = ums-db; Trusted_Connection=True;");
     }
 }
