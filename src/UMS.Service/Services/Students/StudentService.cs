@@ -47,7 +47,7 @@ public class StudentService : IStudentService
 
         Student student = new Student()
         {
-            PersonalDataId = dto.PersonalDataId,
+            PersonalDataId = personalData.Id,
             Course = dto.Course,
             SpecialtyEduFormId = dto.SpecialtyEduFormId,
             IsActive = dto.IsActive,
@@ -70,13 +70,13 @@ public class StudentService : IStudentService
         PersonalData user = await _userRepository.GetByIdAsync(student.PersonalDataId);
         if (user == null) throw new PersonalDataNotFoundException();
 
-        bool imagePath = await _fileService.DeleteAvatarAsync(user.ImagePath);    
+        bool imagePath = await _fileService.DeleteAvatarAsync(user.ImagePath);
         if (imagePath == false) throw new ImageNotFoundException();
 
         int studentDelete = await _studentRepository.DeleteAsync(id);
         int userDelete = await _userRepository.DeleteAsync(student.PersonalDataId);
 
-        return userDelete > 0 && userDelete > 0;
+        return studentDelete > 0 && userDelete > 0;
     }
 
     public async ValueTask<IList<StudentViewModel>> GetAllAsync()
@@ -138,7 +138,7 @@ public class StudentService : IStudentService
     public async ValueTask<bool> UpdateAsync(long id, StudentDto dto)
     {
         Student student = await _studentRepository.GetByIdAsync(id);
-        if (student is null)  throw new StudentNotFoundException();
+        if (student is null) throw new StudentNotFoundException();
 
         Student studentUpdate = new Student()
         {
@@ -162,7 +162,7 @@ public class StudentService : IStudentService
             PhoneNumber = dto.PhoneNumber,
         };
 
-        if(dto.UserAvatar != null)
+        if (dto.UserAvatar != null)
         {
             var deleteResult = await _fileService.DeleteImageAsync(user.ImagePath);
             if (deleteResult is false) throw new ImageNotFoundException();
@@ -171,13 +171,13 @@ public class StudentService : IStudentService
             userUpdate.ImagePath = newImagePath;
         }
 
-        studentUpdate.UpdatedAt  = DateTime.Now;
+        studentUpdate.UpdatedAt = DateTime.Now;
         userUpdate.UpdatedAt = DateTime.Now;
 
         int resultStudent = await _studentRepository.UpdateAsync(student.Id, studentUpdate);
         int resultUser = await _userRepository.UpdateAsync(user.Id, userUpdate);
 
-        return resultStudent > 0 && resultStudent > 0 ;
+        return resultStudent > 0 && resultStudent > 0;
     }
 
 
