@@ -1,8 +1,4 @@
-﻿using UMS.Service.Dtos.Teachers;
-using UMS.Service.Dtos.University;
-using UMS.Service.ViewModels.Teachers;
-
-namespace UMS.Service.Services.Universities;
+﻿namespace UMS.Service.Services.Universities;
 
 public interface IUniversityService
 {

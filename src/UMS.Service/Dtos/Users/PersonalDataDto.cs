@@ -1,6 +1,4 @@
-﻿using static UMS.Domain.Enums.GenderEnum;
-
-namespace UMS.Service.Dtos.PersonalDatas
+﻿namespace UMS.Service.Dtos.PersonalDatas
 {
     public class PersonalDataDto
     {
@@ -9,8 +7,10 @@ namespace UMS.Service.Dtos.PersonalDatas
         public string LastName { get; set; }
         public long CityId { get; set; }
         public long CountryId { get; set; }
+        [Email]
         public string Email { get; set; }
         public Gender Gender { get; set; }
+        [PhoneNumber]
         public string PhoneNumber { get; set; }
         public string ImagePath { get; set; }
     }

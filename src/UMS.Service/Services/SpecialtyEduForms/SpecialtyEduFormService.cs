@@ -1,4 +1,4 @@
-﻿using UMS.Service.Dtos.Education;
+using UMS.Service.Dtos.Education;
 
 namespace UMS.Service.SpecialtyEduForms
 {

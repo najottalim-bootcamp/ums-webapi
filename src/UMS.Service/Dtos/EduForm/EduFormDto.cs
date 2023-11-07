@@ -1,6 +1,4 @@
-﻿using static UMS.Domain.Enums.EduFormEnum;
-
-namespace UMS.Service.Dtos.EduForm
+﻿namespace UMS.Service.Dtos.EduForm
 {
     public class EduFormDto
     {
