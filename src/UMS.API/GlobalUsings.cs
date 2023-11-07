@@ -28,3 +28,6 @@ global using UMS.Service.Services.Faculties;
 global using UMS.DataAccess.Repositories.PersonalDatas;
 global using UMS.Service.Common.Files;
 global using UMS.Service.Common.Paginations;
+global using UMS.Service.Dtos.Teachers;
+global using UMS.Service.Services.Teachers;
+global using UMS.Service.Dtos.Discipline;

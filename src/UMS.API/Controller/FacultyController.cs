@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using UMS.Service.Services.Faculties;
-
-namespace UMS.API.Controller
+﻿namespace UMS.API.Controller
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
