@@ -1,9 +1,12 @@
 using UMS.DataAccess.Repositories.Branchs;
 using UMS.DataAccess.Repositories.Cities;
 using UMS.DataAccess.Repositories.Countries;
+using UMS.DataAccess.Repositories.PersonalDatas;
 using UMS.DataAccess.Repositories.Students;
 using UMS.Service.Branches;
 using UMS.Service.Cities;
+using UMS.Service.Common.Files;
+using UMS.Service.Common.Paginations;
 using UMS.Service.Countries;
 using UMS.Service.Services.Students;
 
@@ -15,9 +18,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.AddScoped<IStudentRepository , StudentRepository>();
-//builder.Services.AddScoped<IStudentService , StudentService>();
-
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IPersonalDataRepository, PersonalDataRepository>();
+builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<IPagination, Pagination>();
 
 builder.Services.AddScoped<ICityRepository , CityRepository>();
 builder.Services.AddScoped<ICityService , CityService>();
@@ -29,6 +34,7 @@ builder.Services.AddScoped<ICountryService , CountryService>();
 
 builder.Services.AddScoped<IBranchRepository , BranchRepository>();
 builder.Services.AddScoped<IBranchService , BranchService>();
+
 
 var app = builder.Build();
 
