@@ -1,6 +1,5 @@
-﻿using UMS.Service.Dtos.Education;
+﻿namespace UMS.Service.Services.Faculties;﻿
 
-namespace UMS.Service.Services.Faculties;
 public class FacultyService : IFacultyService
 {
     private readonly IFacultyRepository _repository;
