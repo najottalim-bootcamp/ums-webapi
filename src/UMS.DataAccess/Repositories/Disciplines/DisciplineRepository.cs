@@ -1,7 +1,4 @@
-﻿using UMS.DataAccess.Dtos.Discipline;
-using UMS.Domain.Entities.EduModels;
-
-namespace UMS.DataAccess.Repositories.Disciplines
+﻿namespace UMS.DataAccess.Repositories.Disciplines
 {
     public class DisciplineRepository : BaseRepository, IDisciplineRepository
     {
@@ -135,8 +132,8 @@ namespace UMS.DataAccess.Repositories.Disciplines
             {
                 await _connection.OpenAsync();
 
-                string query = $"UPDATE Discipline SET Name = @Name,DepartmentId = @DepartmentId,TeacherId = @TeacherId,LectureHours = @LectureHours," +
-                    $"PracticeHours = @PracticeHours, Updated_At  = @UpdatedAt WHERE id={Id};";
+                string query = @$"UPDATE Discipline SET Name = @Name,DepartmentId = @DepartmentId,TeacherId = @TeacherId,LectureHours = @LectureHours,
+                                                PracticeHours = @PracticeHours WHERE id={Id};";
                 var result = await _connection.ExecuteAsync(query, model);
 
                 return result;
