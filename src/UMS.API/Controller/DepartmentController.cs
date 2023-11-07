@@ -41,7 +41,7 @@ namespace UMS.API.Controller
         }
 
         [HttpPut]
-        public async ValueTask<IActionResult> UpdateAsync(long Id, [FromForm]  DepartmentDto dto)
+        public async ValueTask<IActionResult> UpdateAsync(long Id, [FromForm] DepartmentDto dto)
         {
             var result = await department.UpdateAsync(Id, dto);
 
@@ -51,8 +51,8 @@ namespace UMS.API.Controller
         [HttpDelete]
         public async ValueTask<IActionResult> DeleteAsync(long Id)
         {
-            var result = await department.DeleteAsync(Id); 
-            
+            var result = await department.DeleteAsync(Id);
+
             return Ok(result);
         }
 
