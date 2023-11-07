@@ -15,7 +15,6 @@
         public async ValueTask<IActionResult> CreateAsync([FromForm] DisciplineDto disciplineDto)
         {
             bool result = await _disciplineService.CreateAsync(disciplineDto);
-
             return Ok(result);
         }
 
@@ -37,7 +36,6 @@
         public async ValueTask<IActionResult> GetByIdAsync(long id)
         {
             var result = await _disciplineService.GetByIdAsync(id);
-
             return Ok(result);
         }
 
@@ -45,7 +43,6 @@
         public async ValueTask<IActionResult> DeleteAsync(long id)
         {
             bool result = await _disciplineService.DeleteAsync(id);
-
             return Ok(result);
         }
     }

@@ -15,7 +15,6 @@
         public async ValueTask<IActionResult> CreateAsync([FromForm] DepartmentDto dto)
         {
             bool result = await department.CreateAsync(dto);
-
             return Ok(result);
         }
 
@@ -23,7 +22,6 @@
         public async ValueTask<IActionResult> GetAllAsync()
         {
             var result = await department.GetAllAsync();
-
             return Ok(result);
         }
 
@@ -31,7 +29,6 @@
         public async ValueTask<IActionResult> GetByIdAsync(long Id)
         {
             var result = await department.GetByIdAsync(Id);
-
             return Ok(result);
         }
 
@@ -39,7 +36,6 @@
         public async ValueTask<IActionResult> UpdateAsync(long Id, [FromForm] DepartmentDto dto)
         {
             var result = await department.UpdateAsync(Id, dto);
-
             return Ok(result);
         }
 
@@ -47,7 +43,6 @@
         public async ValueTask<IActionResult> DeleteAsync(long Id)
         {
             var result = await department.DeleteAsync(Id);
-
             return Ok(result);
         }
 
