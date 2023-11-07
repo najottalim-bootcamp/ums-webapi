@@ -15,7 +15,6 @@
         public async ValueTask<IActionResult> CreateAsync([FromForm] SpecialtyDTO specialtyDTO)
         {
             bool result = await _specialtyService.CreateAsync(specialtyDTO);
-
             return Ok(result);
         }
 
@@ -30,7 +29,6 @@
         public async ValueTask<IActionResult> GetByIdAsync(long id)
         {
             var specialty = await _specialtyService.GetByIdAsync(id);
-
             return Ok(specialty);
         }
 
@@ -38,11 +36,8 @@
         public async ValueTask<IActionResult> DeleteAsync(long id)
         {
             bool result = await _specialtyService.DeleteAsync(id);
-
             return Ok(result);
         }
-
-
     }
 }
 

@@ -36,7 +36,6 @@
         public async ValueTask<IActionResult> GetByIdAsync(long id)
         {
             var result = await _studentService.GetByIdAsync(id);
-
             return Ok(result);
         }
 
@@ -44,7 +43,6 @@
         public async ValueTask<IActionResult> DeleteAsync(long id)
         {
             bool result = await _studentService.DeleteAsync(id);
-
             return Ok(result);
         }
     }

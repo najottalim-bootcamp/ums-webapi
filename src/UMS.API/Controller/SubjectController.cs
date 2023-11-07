@@ -10,7 +10,7 @@
         }
 
         [HttpPost]
-        public async ValueTask<IActionResult> CreateAsync([FromForm]SubjectDto subjectDto)
+        public async ValueTask<IActionResult> CreateAsync([FromForm] SubjectDto subjectDto)
         {
             bool result = await _subjectService.CreateAsync(subjectDto);
             return Ok(result);
@@ -20,7 +20,6 @@
         public async ValueTask<IActionResult> GetAllAsync()
         {
             var subjects = await _subjectService.GetAllAsync();
-
             return Ok(subjects);
         }
 
@@ -28,15 +27,13 @@
         public async ValueTask<IActionResult> GetByIdAsync(long id)
         {
             var subject = await _subjectService.GetByIdAsync(id);
-
             return Ok(subject);
         }
 
         [HttpPut]
-        public async ValueTask<IActionResult> UpdateAsync(long id , [FromForm] SubjectDto subjectDto)
+        public async ValueTask<IActionResult> UpdateAsync(long id, [FromForm] SubjectDto subjectDto)
         {
-            bool result = await _subjectService.UpdateAsync(id,subjectDto);
-
+            bool result = await _subjectService.UpdateAsync(id, subjectDto);
             return Ok(result);
         }
 

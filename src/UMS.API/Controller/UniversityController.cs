@@ -12,7 +12,7 @@
         }
 
         [HttpPost]
-        public async ValueTask<IActionResult> CreateAsync(UniversityDto universityDto)
+        public async ValueTask<IActionResult> CreateAsync([FromForm] UniversityDto universityDto)
         {
             bool result = await _universityService.CreateAsync(universityDto);
             return Ok(result);
